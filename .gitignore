@@ -1,0 +1,15 @@
+# Editores e IDE
+.idea/
+.vscode/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Dependencias y resultados generados
+node_modules/
+dist/
+coverage/
+*.log
+*.tmp
