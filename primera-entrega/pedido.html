@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pedido - Restaurante</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Restaurante</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="menu.html">Menú</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="ubicacion.html">Ubicación</a>
+        <a href="pedido.html" aria-current="page">Pedido</a>
+    </nav>
+
+    <main>
+
+        <h2>Pedido</h2>
+
+        <section>
+            <h3>Resumen del pedido</h3>
+
+            <div id="resumenPedido">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="productosPedido">
+                        <tr>
+                            <td colspan="3">
+                                No hay productos seleccionados.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    <strong>Total:</strong>
+                    <span id="totalPedido">$0</span>
+                </p>
+
+            </div>
+        </section>
+
+        <section>
+
+            <h3>Datos del pedido</h3>
+
+            <form id="formPedido">
+
+                <p>
+                    <label for="apellido">Apellido:</label>
+
+                    <input
+                        type="text"
+                        id="apellido"
+                        name="apellido"
+                        placeholder="Ingrese su apellido"
+                        size="30"
+                        maxlength="50"
+                        required
+                    >
+                </p>
+
+                <p>
+                    <label for="mesa">Número de mesa:</label>
+
+                    <select
+                        id="mesa"
+                        name="mesa"
+                        required
+                    >
+                        <option value="">Seleccione una mesa</option>
+                        <option value="1">Mesa 1</option>
+                        <option value="2">Mesa 2</option>
+                        <option value="3">Mesa 3</option>
+                        <option value="4">Mesa 4</option>
+                        <option value="5">Mesa 5</option>
+                        <option value="6">Mesa 6</option>
+                        <option value="7">Mesa 7</option>
+                        <option value="8">Mesa 8</option>
+                        <option value="9">Mesa 9</option>
+                        <option value="10">Mesa 10</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="metodoPago">Método de pago:</label>
+
+                    <select
+                        id="metodoPago"
+                        name="metodoPago"
+                        required
+                    >
+                        <option value="">Seleccione un método de pago</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="transferencia">Transferencia</option>
+                        <option value="tarjeta">Tarjeta</option>
+                    </select>
+                </p>
+
+                <p>
+                    <button type="submit">
+                        Confirmar Pedido
+                    </button>
+                </p>
+
+            </form>
+
+            <div
+                id="mensajePedido"
+                role="status"
+                aria-live="polite"
+            >
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Restaurante - Córdoba</p>
+    </footer>
+
+</body>
+
+</html>
