@@ -1,1 +1,148 @@
 /* Hoja de estilos compartida por las páginas de la primera entrega. */
+
+:root {
+    --color-fondo: #f7f3ed;
+    --color-superficie: #ffffff;
+    --color-principal: #7a2e1e;
+    --color-principal-oscuro: #572015;
+    --color-acento: #d89b3c;
+    --color-texto: #2f2925;
+    --color-texto-suave: #655c55;
+    --color-borde: #ded3c7;
+    --sombra-suave: 0 0.25rem 0.75rem rgb(47 41 37 / 10%);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+}
+
+h2,
+h3 {
+    color: var(--color-principal-oscuro);
+}
+
+a {
+    color: var(--color-principal);
+    text-underline-offset: 0.2em;
+}
+
+a:hover {
+    color: var(--color-principal-oscuro);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 0.2rem solid var(--color-acento);
+    outline-offset: 0.2rem;
+}
+
+header {
+    padding: 2rem 1rem 1.5rem;
+    color: #ffffff;
+    background-color: var(--color-principal);
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-principal-oscuro);
+}
+
+nav a {
+    padding: 0.45rem 0.8rem;
+    color: #ffffff;
+    border-radius: 0.25rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+    color: var(--color-principal-oscuro);
+    background-color: var(--color-acento);
+}
+
+main {
+    width: min(100% - 2rem, 68rem);
+    margin-inline: auto;
+    padding-block: 2rem;
+}
+
+section {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border: 0.0625rem solid var(--color-borde);
+    border-radius: 0.5rem;
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-suave);
+}
+
+section:last-child {
+    margin-bottom: 0;
+}
+
+.boton {
+    display: inline-block;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    padding: 0.65rem 1rem;
+    color: #ffffff;
+    border-radius: 0.3rem;
+    background-color: var(--color-principal);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.boton:hover {
+    color: #ffffff;
+    background-color: var(--color-principal-oscuro);
+}
+
+footer {
+    padding: 1.25rem 1rem;
+    color: #ffffff;
+    background-color: var(--color-principal-oscuro);
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 0;
+}
