@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Agustín Rodríguez Richard y Nicolás Bulacio">
+    <meta name="description" content="Página principal de un restaurante con menú y pedidos para mesas">
+    <meta name="keywords" content="restaurante, comida, menú, pedidos, mesas">
 
-    <meta name="author" content="Rodriguez, Richard y Bulacio">
-    <meta name="description" content="Pagina web de un restaurante">
-    <meta name="keywords" content="restaurante, comida, menu, pedidos">
-
-    <title>Restaurante</title>
+    <title>Inicio - Restaurante</title>
 
     <link rel="stylesheet" href="css/estilos.css">
 </head>
@@ -18,37 +17,66 @@
 
     <header>
         <h1>Restaurante</h1>
-
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="menu.html">Menu</a>
-            <a href="nosotros.html">Acerca de Nosotros</a>
-            <a href="ubicacion.html">Ubicacion</a>
-        </nav>
     </header>
+
+    <nav>
+        <a href="index.html" aria-current="page">Inicio</a>
+        <a href="menu.html">Menú</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="ubicacion.html">Ubicación</a>
+        <a href="pedido.html">Pedido</a>
+    </nav>
 
     <main id="principal">
 
-        <div class="contenedor">
+        <section class="inicio">
+            <h2>Bienvenidos</h2>
 
-            <section class="inicio">
-                <h2>Bienvenidos</h2>
+            <p>
+                Somos un espacio para disfrutar buena comida y compartir un momento agradable.
+                Consultá nuestro menú y prepará tu pedido directamente desde la mesa.
+            </p>
 
-                <p>
-                    Bienvenidos a nuestro restaurante.
-                    Desde nuestra pagina podras conocer el menu
-                    y realizar tu pedido.
-                </p>
+            <p>
+                <a class="boton" href="menu.html">Ver menú</a>
+                <a class="boton" href="pedido.html">Hacer pedido</a>
+            </p>
+        </section>
 
-                <a class="boton" href="menu.html">Ver Menu</a>
-            </section>
+        <section>
+            <h2>Una experiencia para compartir</h2>
 
-        </div>
+            <p>
+                Preparamos cada plato al momento y trabajamos con ingredientes seleccionados.
+                Nuestra propuesta combina sabores conocidos, porciones abundantes y atención cercana.
+            </p>
+        </section>
+
+        <section>
+            <h2>Opciones para todos</h2>
+
+            <div class="destacados">
+                <article>
+                    <h3>Platos principales</h3>
+                    <p>Alternativas clásicas para disfrutar durante el almuerzo o la cena.</p>
+                </article>
+
+                <article>
+                    <h3>Bebidas</h3>
+                    <p>Opciones frescas para acompañar cada pedido.</p>
+                </article>
+
+                <article>
+                    <h3>Postres</h3>
+                    <p>Sabores dulces para cerrar la experiencia.</p>
+                </article>
+            </div>
+        </section>
 
     </main>
 
     <footer>
-        <p>Restaurante - Cordoba</p>
+        <p>Restaurante - Córdoba</p>
     </footer>
 
 </body>
