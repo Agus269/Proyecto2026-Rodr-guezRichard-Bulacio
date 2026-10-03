@@ -1,8 +1,12 @@
-let pedidoActual = [];
+let pedidoActual =
+    JSON.parse(localStorage.getItem("pedido")) || [];
+
 
 function mostrarProductos() {
 
-    let contenedor = document.getElementById("listaProductos");
+    let contenedor =
+        document.getElementById("listaProductos");
+
     let contenido = "";
 
     productos.forEach((producto) => {
@@ -59,6 +63,7 @@ function agregarProducto(idProducto) {
         ).value
     );
 
+
     if (cantidad < 1) {
 
         alert("La cantidad debe ser mayor a 0.");
@@ -66,9 +71,11 @@ function agregarProducto(idProducto) {
         return;
     }
 
+
     let productoExistente = pedidoActual.find(
         (item) => item.id === idProducto
     );
+
 
     if (productoExistente) {
 
@@ -83,6 +90,13 @@ function agregarProducto(idProducto) {
             cantidad: cantidad
         });
     }
+
+
+    localStorage.setItem(
+        "pedido",
+        JSON.stringify(pedidoActual)
+    );
+
 
     alert(
         producto.nombre +
