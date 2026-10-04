@@ -102,7 +102,7 @@ node tests/pedido.test.cjs
 
 - [Estado y relación con las clases](docs/entrega-primera.md).
 - [Wireframes desktop/mobile y estados](primera-entrega/Wireframe/wireframes-restaurante.pdf).
-- [Guía para el sketch pendiente](primera-entrega/Sketch/LEEME.md).
+- [Fotos del sketch inicial y pendientes](primera-entrega/Sketch/LEEME.md).
 - [Origen de las imágenes](primera-entrega/imagenes/LEEME.md).
 
 El PDF se puede regenerar con `python herramientas/generar_wireframes.py .`
