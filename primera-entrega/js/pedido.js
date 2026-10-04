@@ -30,7 +30,7 @@ const mostrarPedido = () => {
                         value="${item.cantidad}" onchange="cambiarCantidad(${item.id})">
                 </td>
                 <td>${mostrarPrecio(item.precio)}</td>
-                <td>${mostrarPrecio(item.precio * item.cantidad)}</td>
+                <td id="subtotal-${item.id}">${mostrarPrecio(item.precio * item.cantidad)}</td>
                 <td><button type="button" onclick="eliminarProducto(${item.id})">Quitar ${item.nombre}</button></td>
             </tr>
         `;
@@ -77,9 +77,10 @@ const cambiarCantidad = (id) => {
         }
     }
     if (guardarPedido(pedido)) {
-        mostrarPedido();
+        const producto = buscarProducto(id);
+        document.getElementById("subtotal-" + id).textContent = mostrarPrecio(producto.precio * cantidad);
+        document.getElementById("totalPedido").textContent = mostrarPrecio(calcularTotal(pedido));
         document.getElementById("mensajePedido").textContent = "Cantidad y total actualizados.";
-        document.getElementById("unidades-" + id).focus();
     }
 };
 

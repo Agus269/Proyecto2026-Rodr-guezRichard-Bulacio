@@ -62,6 +62,10 @@ El diálogo alert bloqueó la primera pestaña de automatización: las ramas de 
 y limpieza se verificaron en pruebas de lógica, pero conviene probar manualmente
 Aceptar en esos diálogos antes de entregar.
 
+Se corrigió y comprobó en navegador que escribir una cantidad y hacer clic
+inmediatamente en Quitar elimina el producto con un solo clic. La actualización
+del importe conserva los controles existentes para no interrumpir ese clic.
+
 ## Pendientes que requieren a los integrantes
 
 - Fotografiar el sketch en papel siguiendo el template de la cátedra.

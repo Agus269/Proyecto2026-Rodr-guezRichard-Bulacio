@@ -66,8 +66,11 @@ check("renderizado de seis productos", () => {
 check("resumen, cambio y eliminación", () => {
     data.set("pedido",JSON.stringify([{id:1,cantidad:2},{id:2,cantidad:1}]));
     run("mostrarPedido()"); assert.equal(element("totalPedido").textContent,"$35000.00");
+    const controles = element("productosPedido").innerHTML;
     element("unidades-1").value="3"; run("cambiarCantidad(1)");
     assert.equal(element("totalPedido").textContent,"$47000.00");
+    assert.equal(element("subtotal-1").textContent,"$36000.00");
+    assert.equal(element("productosPedido").innerHTML, controles);
     run("eliminarProducto(1)"); assert.equal(element("totalPedido").textContent,"$11000.00");
     run("vaciarPedido()"); assert.equal(element("totalPedido").textContent,"$0.00");
     assert.equal(element("vaciarPedido").disabled,true);
