@@ -68,7 +68,9 @@ del importe conserva los controles existentes para no interrumpir ese clic.
 
 ## Pendientes que requieren a los integrantes
 
-- Fotografiar el sketch en papel siguiendo el template de la cátedra.
+- Ya se incorporaron tres fotos del sketch inicial en papel en `primera-entrega/Sketch`.
+  Falta completar mobile y adecuar las láminas al template, con Ubicación y errores.
+  Las fotos conservan el diseño original; el wireframe refleja la evolución actual.
 - Habilitar GitHub Pages desde Settings con una cuenta administradora del repo.
   La cuenta de Nico tiene permiso de escritura, pero no de administración.
   En la cuenta de Agus: Settings > Pages > Deploy from a branch > main > / (root)
