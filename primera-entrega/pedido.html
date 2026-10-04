@@ -2,15 +2,19 @@
 <html lang="es">
 
 <head>
+    <link rel="icon" href="imagenes/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Agustín Rodríguez Richard y Nicolás Bulacio">
+    <meta name="description" content="Revisá productos, cantidades y total y confirmá un pedido de demostración por mesa">
+    <meta name="keywords" content="restaurante, pedido, mesa, pago, Córdoba">
 
     <title>Pedido - Restaurante</title>
 
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 
-<body>
+<body onload="mostrarPedido()">
 
     <header>
         <h1>Restaurante</h1>
@@ -27,24 +31,29 @@
     <main>
 
         <h2>Pedido</h2>
+        <p>Demostración académica: no se envían pedidos ni se realizan cobros.</p>
 
         <section>
-            <h3>Resumen del pedido</h3>
+            <h3 id="tituloResumen" tabindex="-1">Resumen del pedido</h3>
 
-            <div id="resumenPedido">
+            <p>En pantallas pequeñas, deslizá la tabla hacia los costados para ver todas las columnas.</p>
+            <div id="resumenPedido" tabindex="0" role="region" aria-label="Tabla del pedido con desplazamiento horizontal">
 
                 <table>
+                    <caption>Productos seleccionados e importes en pesos argentinos</caption>
                     <thead>
                         <tr>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio unitario</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Acción</th>
                         </tr>
                     </thead>
 
                     <tbody id="productosPedido">
                         <tr>
-                            <td colspan="3">
+                            <td colspan="5">
                                 No hay productos seleccionados.
                             </td>
                         </tr>
@@ -57,13 +66,16 @@
                 </p>
 
             </div>
+            <p><a href="menu.html">Seguir eligiendo productos</a></p>
+            <button type="button" id="vaciarPedido" onclick="vaciarPedido()">Vaciar pedido</button>
         </section>
 
         <section>
 
             <h3>Datos del pedido</h3>
 
-            <form id="formPedido">
+            <form id="formPedido" onsubmit="return confirmarPedido()" novalidate>
+                <p>Todos los campos son obligatorios.</p>
 
                 <p>
                     <label for="apellido">Apellido:</label>
@@ -128,17 +140,21 @@
                 id="mensajePedido"
                 role="status"
                 aria-live="polite"
+                tabindex="-1"
             >
             </div>
 
         </section>
 
     </main>
+    <noscript>Necesitás habilitar JavaScript para revisar y confirmar un pedido.</noscript>
 
     <footer>
         <p>Restaurante - Córdoba</p>
     </footer>
 
+    <script src="js/productos.js"></script>
+    <script src="js/pedido.js"></script>
 </body>
 
 </html>

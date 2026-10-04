@@ -12,8 +12,8 @@
     --color-texto: #2f2925;
     --color-texto-suave: #655c55;
     --color-borde: #ded3c7;
-    --sombra-suave: 0 0.25rem 0.75rem rgb(47 41 37 / 10%);
-    --sombra-tarjeta: 0 0.5rem 1.25rem rgb(47 41 37 / 12%);
+    --sombra-suave: 0 0.25rem 0.75rem rgba(47, 41, 37, 0.1);
+    --sombra-tarjeta: 0 0.5rem 1.25rem rgba(47, 41, 37, 0.12);
     --radio: 0.65rem;
 }
 
@@ -21,10 +21,6 @@
 *::before,
 *::after {
     box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 body {
@@ -67,11 +63,11 @@ a:hover {
     color: var(--color-principal-oscuro);
 }
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible {
-    outline: 0.2rem solid var(--color-acento);
+a:focus,
+button:focus,
+input:focus,
+select:focus {
+    outline: 0.2rem solid #174f85;
     outline-offset: 0.2rem;
 }
 
@@ -84,7 +80,7 @@ header {
 
 header h1 {
     margin-bottom: 0;
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: 3rem;
 }
 
 nav {
@@ -113,14 +109,16 @@ nav a[aria-current="page"] {
 
 main {
     flex: 1;
-    width: min(100% - 2rem, 68rem);
-    margin-inline: auto;
-    padding-block: 2rem;
+    width: 94%;
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 2rem 0;
+    overflow-wrap: break-word;
 }
 
 main > h2 {
     margin-bottom: 0.5rem;
-    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-size: 2.4rem;
 }
 
 main > p {
@@ -141,14 +139,15 @@ section:last-child {
 }
 
 .inicio {
-    padding-block: clamp(2rem, 6vw, 4rem);
+    padding: 3rem 1.5rem;
     background: linear-gradient(135deg, #ffffff 55%, var(--color-acento-claro));
     text-align: center;
 }
 
 .inicio > p {
     max-width: 44rem;
-    margin-inline: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .destacados,
@@ -189,11 +188,10 @@ section:last-child {
 
 .producto img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: auto;
     margin-bottom: 1rem;
     border-radius: 0.45rem;
     background-color: var(--color-acento-claro);
-    object-fit: cover;
 }
 
 .producto h3 {
@@ -299,6 +297,46 @@ tbody tr:nth-child(even) {
     overflow-x: auto;
 }
 
+#resumenPedido table {
+    min-width: 42rem;
+}
+
+#resumenPedido input {
+    min-width: 5rem;
+}
+
+#resumenPedido th[scope="row"] {
+    color: var(--color-texto);
+    background-color: var(--color-acento-claro);
+}
+
+#resumenPedido label {
+    font-size: 0.85rem;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: default;
+    transform: none;
+}
+
+nav a:focus {
+    outline-color: #ffffff;
+}
+
+#mensajeMenu {
+    font-weight: 700;
+}
+
+.imagen-portada {
+    display: block;
+    width: 100%;
+    max-width: 20rem;
+    height: auto;
+    margin: 1rem auto;
+    border-radius: var(--radio);
+}
+
 #totalPedido {
     color: var(--color-principal-oscuro);
     font-size: 1.2rem;
@@ -343,7 +381,15 @@ footer p {
 
 @media (max-width: 36rem) {
     header {
-        padding-block: 1.75rem;
+        padding: 1.75rem 1rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main > h2 {
+        font-size: 1.8rem;
     }
 
     nav {
@@ -360,8 +406,8 @@ footer p {
     }
 
     main {
-        width: min(100% - 1rem, 68rem);
-        padding-block: 1rem;
+        width: 96%;
+        padding: 1rem 0;
     }
 
     section {
@@ -376,7 +422,8 @@ footer p {
     .boton,
     button {
         width: 100%;
-        margin-inline: 0;
+        margin-left: 0;
+        margin-right: 0;
         text-align: center;
     }
 
@@ -387,10 +434,6 @@ footer p {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
     *,
     *::before,
     *::after {

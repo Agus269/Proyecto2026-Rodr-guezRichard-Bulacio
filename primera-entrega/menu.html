@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <link rel="icon" href="imagenes/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta
         name="viewport"
@@ -9,6 +10,9 @@
     >
 
     <title>Menú - Restaurante</title>
+    <meta name="author" content="Agustín Rodríguez Richard y Nicolás Bulacio">
+    <meta name="description" content="Elegí platos y bebidas del restaurante para preparar tu pedido por mesa">
+    <meta name="keywords" content="restaurante, menú, platos, bebidas, Córdoba">
 
     <link
         rel="stylesheet"
@@ -16,7 +20,7 @@
     >
 </head>
 
-<body>
+<body onload="mostrarProductos()">
 
     <header>
         <h1>Restaurante</h1>
@@ -52,6 +56,9 @@
         <p>
             Elegí los productos que quieras agregar a tu pedido.
         </p>
+        <p>Precios en pesos argentinos. Las imágenes son ilustraciones orientativas.</p>
+        <p id="mensajeMenu" role="status" aria-live="polite"></p>
+        <noscript>Necesitás habilitar JavaScript para consultar el catálogo y agregar productos.</noscript>
 
         <section>
 
