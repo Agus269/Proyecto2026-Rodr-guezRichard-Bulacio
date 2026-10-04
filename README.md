@@ -12,6 +12,7 @@ Sitio web académico para presentar un restaurante, consultar su menú y realiza
 - [Ejecución](#ejecución)
 - [Publicación](#publicación)
 - [Forma de trabajo](#forma-de-trabajo)
+- [Pruebas y entrega](#pruebas-y-entrega)
 
 ## Autores
 
@@ -69,8 +70,10 @@ La carpeta `segunda-entrega` se reservará para la evolución del proyecto con R
 El proyecto no requiere instalación de dependencias para la primera entrega.
 
 1. Clonar el repositorio.
-2. Abrir `primera-entrega/index.html` en un navegador moderno.
-3. Para desarrollo local, se recomienda servir la carpeta con una extensión como Live Server para comprobar correctamente la navegación y el almacenamiento.
+2. Servir la carpeta `primera-entrega` con Live Server u otro servidor estático local.
+3. Abrir `index.html` desde esa dirección. Usar un servidor permite compartir
+   correctamente el almacenamiento entre Menú y Pedido; el comportamiento de
+   `localStorage` con archivos abiertos mediante `file://` puede variar.
 
 ## Publicación
 
@@ -82,3 +85,25 @@ La dirección prevista para el sitio es [GitHub Pages — Restaurante](https://a
 - Los cambios se incorporan a `main` mediante pull requests.
 - Los commits siguen la convención [Conventional Commits](https://www.conventionalcommits.org/es/v1.0.0/).
 - Antes de integrar un cambio, el otro integrante revisa navegación, accesibilidad y cumplimiento de las consignas.
+
+## Pruebas y entrega
+
+La web representa un restaurante ficticio. Dirección, horarios y contactos son
+ejemplos; la confirmación no envía pedidos ni procesa pagos.
+
+El pedido admite de 1 a 99 unidades por producto. Se conserva en el navegador
+hasta vaciarlo o confirmar. La confirmación de demostración limpia la selección.
+
+Para ejecutar las pruebas de lógica con Node, sin instalar paquetes:
+
+```sh
+node tests/pedido.test.cjs
+```
+
+- [Estado y relación con las clases](docs/entrega-primera.md).
+- [Wireframes desktop/mobile y estados](primera-entrega/Wireframe/wireframes-restaurante.pdf).
+- [Guía para el sketch pendiente](primera-entrega/Sketch/LEEME.md).
+- [Origen de las imágenes](primera-entrega/imagenes/LEEME.md).
+
+El PDF se puede regenerar con `python herramientas/generar_wireframes.py .`
+si se dispone de ReportLab. Esa herramienta no es necesaria para ejecutar la web.

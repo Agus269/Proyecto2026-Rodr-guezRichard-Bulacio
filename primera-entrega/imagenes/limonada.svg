@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320" role="img" aria-labelledby="titulo">
+<title id="titulo">Limonada casera - ilustración original</title>
+<rect width="480" height="320" rx="16" fill="#f6e4c5"/>
+<ellipse cx="240" cy="279" rx="99" ry="12" fill="#d9c8b2"/><path d="M160 79H318L297 269H180Z" fill="#f3df92" stroke="#c4bc91" stroke-width="4"/><path d="M168 132H311L296 264H183Z" fill="#e8cd65"/><path d="M263 244L288 35" stroke="#718968" stroke-width="9"/><g fill="#fff9df" opacity=".8"><rect x="186" y="109" width="37" height="32" rx="5" transform="rotate(10 186 109)"/><rect x="237" y="129" width="38" height="31" rx="5" transform="rotate(-8 237 129)"/></g><circle cx="167" cy="90" r="43" fill="#e3b83d"/><circle cx="167" cy="90" r="34" fill="#fff0a5"/><path d="M167 56V124M133 90H201M142 65L192 115M142 115L192 65" stroke="#e3b83d" stroke-width="3"/>
+</svg>
