@@ -90,3 +90,36 @@ compartido sin coordinar con su propietario.
 
 React, Vite, SASS y servicios simulados pertenecen al segundo parcial y no son
 requisitos implementados en esta primera entrega.
+
+## Rechequeo final
+
+Se volvió a ejecutar la suite: 13 pruebas aprobadas y los tres archivos JavaScript
+sin errores de sintaxis. Un análisis con HTMLParser comprobó cierre y anidación
+de etiquetas, referencias locales, metadatos, IDs, labels y captions en las cinco
+páginas. Este análisis no sustituye un validador completo de HTML.
+
+En navegador se comprobaron nuevamente las cinco páginas a 1280 y 390 px:
+sin imágenes rotas, campos sin etiqueta, desbordamiento de página ni errores de
+consola. Cada navegación contiene los cinco destinos. Se ajustó Inicio para
+presentar pizza para compartir en lugar de anunciar postres ausentes del catálogo.
+
+| Consigna | Resultado y evidencia |
+| --- | --- |
+| HTML, imágenes y CSS compartido | Implementados; referencias y estructura verificadas. |
+| Accesibilidad pedida | Alt, labels con for y captions presentes; revisión de DOM y código. |
+| JavaScript y documentación | Funciones flecha externas con JSDoc, eventos HTML y 13 pruebas aprobadas. |
+| README y organización | Secciones, índice, negritas, tabla, tecnologías, autores y enlace de publicación presentes. |
+| Ramas y participación | Ramas Agus y Nico; trabajo de ambos conservado e integrado por PR. |
+| Historial de al menos 10 commits en 4 días | Superado: 14 commits de trabajo sin contar merges ni el commit del template, distribuidos en 4 fechas. |
+| Conventional Commits | Cumplido en los cambios nuevos; mensajes históricos de Agus pendientes de aceptación docente. |
+| Wireframe desktop/mobile | PDF de las cinco páginas y estados; revisado visualmente. |
+| Sketch | Tres fotos originales incorporadas; faltan mobile completo, template, Ubicación y errores. |
+| Publicación | URL pública y API de Pages devolvieron 404; Nico no tiene permiso admin. Requiere Agus. |
+
+El intento adicional de probar la alerta de pedido vacío volvió a bloquear el
+control automático del navegador. Sigue pendiente comprobar manualmente Aceptar.
+No se marca la entrega como completa hasta resolver sketch y publicación.
+
+El nombre del repositorio difiere del patrón literal solicitado por la consigna.
+Su propietario debe confirmar el nombre y la vinculación con GitHub Classroom;
+el origen en el template de la cátedra por sí solo no demuestra esa vinculación.
