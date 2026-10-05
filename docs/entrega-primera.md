@@ -1,6 +1,6 @@
 # Estado de la primera entrega
 
-Revisión del 4 de octubre de 2026. Fuente: Proyecto.html de la cátedra y
+Revisión del 4 de octubre de 2026, actualizada el 5 de octubre tras verificar la publicación. Fuente: Proyecto.html de la cátedra y
 primera-entrega/Requerimientos.md. Este documento distingue trabajo implementado
 de condiciones de entrega todavía pendientes.
 
@@ -71,10 +71,6 @@ del importe conserva los controles existentes para no interrumpir ese clic.
 - Ya se incorporaron tres fotos del sketch inicial en papel en `primera-entrega/Sketch`.
   Falta completar mobile y adecuar las láminas al template, con Ubicación y errores.
   Las fotos conservan el diseño original; el wireframe refleja la evolución actual.
-- Habilitar GitHub Pages desde Settings con una cuenta administradora del repo.
-  La cuenta de Nico tiene permiso de escritura, pero no de administración.
-  En la cuenta de Agus: Settings > Pages > Deploy from a branch > main > / (root)
-  > Save. Luego abrir la URL del README terminada en /primera-entrega/.
 - Revisar la entrega desde la cuenta de Agus y confirmar que los dos pueden
   explicar el código. Las correcciones preservan su catálogo y almacenamiento.
 
@@ -114,11 +110,19 @@ presentar pizza para compartir en lugar de anunciar postres ausentes del catálo
 | Conventional Commits | Cumplido en los cambios nuevos; mensajes históricos de Agus pendientes de aceptación docente. |
 | Wireframe desktop/mobile | PDF de las cinco páginas y estados; revisado visualmente. |
 | Sketch | Tres fotos originales incorporadas; faltan mobile completo, template, Ubicación y errores. |
-| Publicación | URL pública y API de Pages devolvieron 404; Nico no tiene permiso admin. Requiere Agus. |
+| Publicación | Comprobada el 5 de octubre: Pages indica built, desde main y /(root); la URL pública responde HTTP 200. |
 
 El intento adicional de probar la alerta de pedido vacío volvió a bloquear el
 control automático del navegador. Sigue pendiente comprobar manualmente Aceptar.
-No se marca la entrega como completa hasta resolver sketch y publicación.
+No se marca la entrega como completa hasta resolver los pendientes del sketch y
+las comprobaciones manuales indicadas.
+
+La publicación se verificó el 5 de octubre de 2026 en la URL del README. Las cinco
+páginas se comprobaron a 1280 y 390 px, sin imágenes rotas, campos sin label,
+desbordamiento de página ni errores de consola. Se probó agregar dos hamburguesas,
+recargar, revisar el pedido, subir la cantidad a tres y confirmar para mesa 3:
+total de $36000.00, mensaje de demostración y pedido vacío después de confirmar.
+Las 13 pruebas de lógica volvieron a pasar. GitHub Pages ya no es un pendiente.
 
 El nombre del repositorio difiere del patrón literal solicitado por la consigna.
 Su propietario debe confirmar el nombre y la vinculación con GitHub Classroom;
