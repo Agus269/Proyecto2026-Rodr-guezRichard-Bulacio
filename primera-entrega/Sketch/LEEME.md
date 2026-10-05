@@ -13,6 +13,8 @@ actualizado documenta esa evolución; las fotos originales no se modificaron.
 
 ## Pendientes del sketch
 
+Responsable de completar las láminas y subir las fotografías: Agus.
+
 Completar la versión celular, siguiendo el template de la cátedra. El pequeño
 boceto mobile de la tercera fotografía es solo una primera idea de Inicio.
 Las fotografías están hechas sobre hojas de cuaderno: falta trasladar o completar
