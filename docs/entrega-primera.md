@@ -7,6 +7,7 @@ de condiciones de entrega todavía pendientes.
 ## Funcionalidad implementada
 
 - Catálogo de seis productos conservando identificadores, precios y clave `pedido`.
+- Menú construido desde un array y recorrido con `forEach`, según la corrección docente.
 - Agregar cantidades enteras de 1 a 99 por producto y conservarlas al recargar.
 - Resumen con precio unitario, cantidad, subtotal y total.
 - Cambiar cantidades, quitar un producto y vaciar el pedido.
@@ -69,9 +70,10 @@ del importe conserva los controles existentes para no interrumpir ese clic.
 ## Pendientes que requieren a los integrantes
 
 - Ya se incorporaron tres fotos del sketch inicial en papel en `primera-entrega/Sketch`.
-  Falta completar mobile y adecuar las láminas al template, con Ubicación y errores.
-  Las fotos conservan el diseño original; el wireframe refleja la evolución actual.
-  Agus se encarga de completar este pendiente, según lo acordado con Nico.
+  La profesora indicó que puede usarse el sketch viejo: no se exige redibujarlo
+  para que coincida con la web actual. Las fotos tienen desktop y un boceto de
+  Inicio en celular, sin estados de error. Agus debe confirmar si esa aceptación
+  incluye la cobertura mobile y errores de la consigna escrita o completarla.
 - Revisar la entrega desde la cuenta de Agus y confirmar que los dos pueden
   explicar el código. Las correcciones preservan su catálogo y almacenamiento.
 
@@ -107,15 +109,15 @@ presentar pizza para compartir en lugar de anunciar postres ausentes del catálo
 | JavaScript y documentación | Funciones flecha externas con JSDoc, eventos HTML y 13 pruebas aprobadas. |
 | README y organización | Secciones, índice, negritas, tabla, tecnologías, autores y enlace de publicación presentes. |
 | Ramas y participación | Ramas Agus y Nico; trabajo de ambos conservado e integrado por PR. |
-| Historial de al menos 10 commits en 4 días | Superado: 14 commits de trabajo sin contar merges ni el commit del template, distribuidos en 4 fechas. |
+| Historial de al menos 10 commits en 4 días | Superado en el historial existente, sin contar merges ni el commit del template. |
 | Conventional Commits | Cumplido en los cambios nuevos; mensajes históricos de Agus pendientes de aceptación docente. |
 | Wireframe desktop/mobile | PDF de las cinco páginas y estados; revisado visualmente. |
-| Sketch | Tres fotos originales incorporadas; faltan mobile completo, template, Ubicación y errores. |
+| Sketch | Tres fotos originales. La profesora permite el viejo; confirmar con Agus la cobertura mobile y errores, sin exigir que coincida con el sitio actual. |
 | Publicación | Comprobada el 5 de octubre: Pages indica built, desde main y /(root); la URL pública responde HTTP 200. |
 
 El intento adicional de probar la alerta de pedido vacío volvió a bloquear el
 control automático del navegador. Sigue pendiente comprobar manualmente Aceptar.
-No se marca la entrega como completa hasta resolver los pendientes del sketch y
+No se marca la entrega como completa hasta confirmar la cobertura del sketch y
 las comprobaciones manuales indicadas.
 
 La publicación se verificó el 5 de octubre de 2026 en la URL del README. Las cinco
@@ -129,3 +131,13 @@ El nombre del repositorio difiere del patrón literal solicitado por la consigna
 esa observación sobre el nombre se mantiene separada de GitHub Classroom.
 Según la indicación de la profesora comunicada por Nico, no es necesario realizar
 la vinculación con GitHub Classroom. Se retira esa comprobación de los pendientes.
+
+## Corrección docente aplicada el 5 de octubre
+
+Las cinco páginas contienen metadatos de autor, descripción y palabras clave.
+El catálogo es un array y el menú usa `forEach` tanto para dibujar los productos
+como para revisar los ya seleccionados. Los controles conservan el mismo
+funcionamiento; no se agregaron funciones ni dependencias al sitio.
+
+Se corrigió también la lámina de Inicio del wireframe: ahora dice «Para compartir»,
+como la web, en lugar de «Postres». Las fotos originales del sketch no se alteraron.

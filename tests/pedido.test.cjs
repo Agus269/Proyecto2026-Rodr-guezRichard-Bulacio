@@ -59,8 +59,18 @@ check("no superar 99 unidades acumuladas", () => {
     element("cantidad-1").value="1"; run("agregarProducto(1)");
     assert.equal(run("leerPedido()[0].cantidad"),99); assert.equal(alerts.length,1);
 });
-check("renderizado de seis productos", () => {
-    run("mostrarProductos()");
+check("renderizado de seis productos recorriendo el array con forEach", () => {
+    run(`
+        var recorridosCatalogo = 0;
+        const recorrerCatalogo = productos.forEach;
+        productos.forEach = (accion) => {
+            recorridosCatalogo++;
+            return recorrerCatalogo.call(productos, accion);
+        };
+        mostrarProductos();
+        productos.forEach = recorrerCatalogo;
+    `);
+    assert.equal(run("recorridosCatalogo"), 1);
     assert.equal((element("listaProductos").innerHTML.match(/class="producto"/g)||[]).length,6);
 });
 check("resumen, cambio y eliminación", () => {
