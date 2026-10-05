@@ -77,7 +77,7 @@ El proyecto no requiere instalación de dependencias para la primera entrega.
 
 ## Publicación
 
-La dirección prevista para el sitio es [GitHub Pages — Restaurante](https://agus269.github.io/Proyecto2026-Rodr-guezRichard-Bulacio/primera-entrega/). El enlace quedará operativo cuando GitHub Pages sea habilitado desde la rama `main`.
+El sitio está publicado en [GitHub Pages — Restaurante](https://agus269.github.io/Proyecto2026-Rodr-guezRichard-Bulacio/primera-entrega/), desde la rama `main` y la carpeta raíz del repositorio. El 5 de octubre de 2026 se comprobó la publicación, las cinco páginas en escritorio y celular y el flujo de pedido de demostración.
 
 ## Forma de trabajo
 
