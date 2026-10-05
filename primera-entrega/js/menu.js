@@ -1,11 +1,11 @@
 /**
- * Dibuja las tarjetas del catálogo con sus controles de cantidad.
+ * Recorre el array con forEach y dibuja las tarjetas con sus controles de cantidad.
  * @method mostrarProductos
  * @return {void}
  */
 const mostrarProductos = () => {
     let contenido = "";
-    for (const producto of productos) {
+    productos.forEach((producto) => {
         contenido += `
             <article class="producto">
                 <img src="${producto.imagen}" alt="Ilustración de ${producto.nombre}" width="480" height="320">
@@ -17,7 +17,7 @@ const mostrarProductos = () => {
                 <button type="button" onclick="agregarProducto(${producto.id})">Agregar al pedido</button>
             </article>
         `;
-    }
+    });
     document.getElementById("listaProductos").innerHTML = contenido;
 };
 
@@ -36,11 +36,11 @@ const agregarProducto = (idProducto) => {
     const cantidad = Number(campo.value);
     const pedido = leerPedido();
     let existente = null;
-    for (const item of pedido) {
+    pedido.forEach((item) => {
         if (item.id === idProducto) {
             existente = item;
         }
-    }
+    });
     const totalCantidad = cantidad + (existente ? existente.cantidad : 0);
     if (!cantidadValida(cantidad) || !cantidadValida(totalCantidad)) {
         const mensaje = "Ingresá una cantidad entera entre 1 y 99. Cada producto admite hasta 99 unidades en el pedido.";

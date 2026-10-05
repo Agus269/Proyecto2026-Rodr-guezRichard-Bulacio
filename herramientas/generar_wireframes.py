@@ -23,7 +23,7 @@ def lines(x,y,items,step=17):
         y-=step
 def shell(title):
     text(30,766,"RESTAURANTE / "+title,21)
-    text(30,744,"Wireframe actualizado - primera entrega - 04/10/2026",11)
+    text(30,744,"Wireframe actualizado - primera entrega - 05/10/2026",11)
     text(30,714,"ESCRITORIO",12)
     text(730,714,"CELULAR",12)
     box(30,100,650,595,fill="#ffffff")
@@ -48,7 +48,7 @@ text(190,397,"Presentación del restaurante y pedidos por mesa")
 box(230,371,110,25,"Ver menú")
 box(351,371,125,25,"Hacer pedido")
 box(50,271,610,78,"Una experiencia para compartir")
-for x,label in [(50,"Platos"),(257,"Bebidas"),(464,"Postres")]:
+for x,label in [(50,"Platos"),(257,"Bebidas"),(464,"Para compartir")]:
     box(x,153,196,104,label)
 box(745,334,205,209,"Bienvenidos")
 box(761,411,173,90,"Ilustración")

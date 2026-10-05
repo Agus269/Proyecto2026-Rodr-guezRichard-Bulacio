@@ -11,19 +11,21 @@ Son antecedentes del diseño: muestran cuatro enlaces y campos de entrega a
 domicilio. El proyecto evolucionó a cinco páginas y pedidos por mesa. El wireframe
 actualizado documenta esa evolución; las fotos originales no se modificaron.
 
-## Pendientes del sketch
+## Aclaración de la profesora
 
-Responsable de completar las láminas y subir las fotografías: Agus.
+Según la corrección comunicada por Nicolás el 5 de octubre, el sketch puede ser
+el viejo. Se conservan estas fotos: no se exige rehacerlas para igualar las cinco
+páginas ni reemplazar los campos de domicilio por los del pedido por mesa.
 
-Completar la versión celular, siguiendo el template de la cátedra. El pequeño
-boceto mobile de la tercera fotografía es solo una primera idea de Inicio.
-Las fotografías están hechas sobre hojas de cuaderno: falta trasladar o completar
-la entrega en el template solicitado, incluyendo Ubicación y mensajes de error.
-Incluir Inicio, Menú, Nosotros, Ubicación y Pedido, con la misma navegación.
-En Pedido dibujar productos, cantidad, precio, subtotal, total, quitar y vaciar,
-además de apellido, mesa y pago. Agregar los estados de pedido vacío, error de
-cantidad, campos incompletos y confirmación de demostración.
+## Cobertura por confirmar
 
-El PDF de `../Wireframe/wireframes-restaurante.pdf` sirve para consultar el flujo
-actual. Las fotografías complementarias deben guardarse aquí como PNG o JPG,
-por ejemplo `sketch-mobile.png`, conservando estos antecedentes.
+Agus se encarga del sketch, según lo acordado entre los integrantes.
+
+La consigna escrita incluye desktop, mobile y mensajes de error. Las fotos
+muestran las pantallas de escritorio y un boceto pequeño de Inicio en celular;
+no muestran estados de error. Falta confirmar si la aceptación del sketch viejo
+también contempla esta cobertura. Si no la contempla, Agus puede agregar las
+láminas de celular y errores, manteniendo las fotos originales.
+
+El PDF de `../Wireframe/wireframes-restaurante.pdf` documenta el flujo actual.
+Si se agregan fotografías complementarias, se guardan aquí como PNG o JPG.
