@@ -71,6 +71,7 @@ del importe conserva los controles existentes para no interrumpir ese clic.
 - Ya se incorporaron tres fotos del sketch inicial en papel en `primera-entrega/Sketch`.
   Falta completar mobile y adecuar las láminas al template, con Ubicación y errores.
   Las fotos conservan el diseño original; el wireframe refleja la evolución actual.
+  Agus se encarga de completar este pendiente, según lo acordado con Nico.
 - Revisar la entrega desde la cuenta de Agus y confirmar que los dos pueden
   explicar el código. Las correcciones preservan su catálogo y almacenamiento.
 
@@ -124,6 +125,7 @@ recargar, revisar el pedido, subir la cantidad a tres y confirmar para mesa 3:
 total de $36000.00, mensaje de demostración y pedido vacío después de confirmar.
 Las 13 pruebas de lógica volvieron a pasar. GitHub Pages ya no es un pendiente.
 
-El nombre del repositorio difiere del patrón literal solicitado por la consigna.
-Su propietario debe confirmar el nombre y la vinculación con GitHub Classroom;
-el origen en el template de la cátedra por sí solo no demuestra esa vinculación.
+El nombre del repositorio difiere del patrón literal solicitado por la consigna;
+esa observación sobre el nombre se mantiene separada de GitHub Classroom.
+Según la indicación de la profesora comunicada por Nico, no es necesario realizar
+la vinculación con GitHub Classroom. Se retira esa comprobación de los pendientes.
