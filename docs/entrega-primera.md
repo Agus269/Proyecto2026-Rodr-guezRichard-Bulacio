@@ -1,6 +1,6 @@
 # Estado de la primera entrega
 
-Revisión del 4 de octubre de 2026, actualizada el 5 de octubre tras verificar la publicación. Fuente: Proyecto.html de la cátedra y
+Revisión del 4 de octubre de 2026, actualizada el 13 de octubre con las correcciones de los issues #17 a #19. Fuente: Proyecto.html de la cátedra y
 primera-entrega/Requerimientos.md. Este documento distingue trabajo implementado
 de condiciones de entrega todavía pendientes.
 
@@ -10,6 +10,9 @@ de condiciones de entrega todavía pendientes.
 - Menú construido desde un array y recorrido con `forEach`, según la corrección docente.
 - Agregar cantidades enteras de 1 a 99 por producto y conservarlas al recargar.
 - Resumen con precio unitario, cantidad, subtotal y total.
+- Precios con separador de miles y dos decimales mediante `Intl.NumberFormat`,
+  como en el ejercicio de JavaScript 3 enlazado por la profesora en el issue #18.
+- Vaciar y confirmar se deshabilitan si no hay productos y se habilitan al cargar un pedido.
 - Cambiar cantidades, quitar un producto y vaciar el pedido.
 - Validar apellido, mesa y método de pago. Error con alert, mensaje, limpieza y foco.
 - Confirmación académica sin cobros ni comunicaciones a un negocio.
@@ -69,11 +72,10 @@ del importe conserva los controles existentes para no interrumpir ese clic.
 
 ## Pendientes que requieren a los integrantes
 
-- Ya se incorporaron tres fotos del sketch inicial en papel en `primera-entrega/Sketch`.
-  La profesora indicó que puede usarse el sketch viejo: no se exige redibujarlo
-  para que coincida con la web actual. Las fotos tienen desktop y un boceto de
-  Inicio en celular, sin estados de error. Agus debe confirmar si esa aceptación
-  incluye la cobertura mobile y errores de la consigna escrita o completarla.
+- Ya se incorporaron las tres fotos originales y la foto mobile agregada por
+  Agus. La profesora permite el sketch viejo, pero el issue #17 exige incluir
+  los mensajes de error. Falta dibujar y fotografiar ese complemento en papel;
+  `primera-entrega/Sketch/errores-para-sketch.md` es una guía, no evidencia de entrega.
 - Revisar la entrega desde la cuenta de Agus y confirmar que los dos pueden
   explicar el código. Las correcciones preservan su catálogo y almacenamiento.
 
@@ -112,7 +114,7 @@ presentar pizza para compartir en lugar de anunciar postres ausentes del catálo
 | Historial de al menos 10 commits en 4 días | Superado en el historial existente, sin contar merges ni el commit del template. |
 | Conventional Commits | Cumplido en los cambios nuevos; mensajes históricos de Agus pendientes de aceptación docente. |
 | Wireframe desktop/mobile | PDF de las cinco páginas y estados; revisado visualmente. |
-| Sketch | Tres fotos originales. La profesora permite el viejo; confirmar con Agus la cobertura mobile y errores, sin exigir que coincida con el sitio actual. |
+| Sketch | Tres fotos originales y la foto mobile de Agus. Falta el complemento en papel con errores exigido en el issue #17. |
 | Publicación | Comprobada el 5 de octubre: Pages indica built, desde main y /(root); la URL pública responde HTTP 200. |
 
 El intento adicional de probar la alerta de pedido vacío volvió a bloquear el
@@ -141,3 +143,26 @@ funcionamiento; no se agregaron funciones ni dependencias al sitio.
 
 Se corrigió también la lámina de Inicio del wireframe: ahora dice «Para compartir»,
 como la web, en lugar de «Postres». Las fotos originales del sketch no se alteraron.
+
+## Correcciones de los issues revisadas el 13 de octubre
+
+- **#19:** `mostrarPedido` actualiza ambos botones según la presencia de
+  productos. El HTML también los inicia deshabilitados. Se verifican la carga
+  vacía, un pedido con productos, quitar el último producto, vaciar y confirmar.
+- **#18:** la función compartida `mostrarPrecio` usa `Intl.NumberFormat("es-AR")`.
+  Menú, precios unitarios, subtotales, total y confirmación muestran importes
+  como `$12.000,00`. Los números del catálogo y del almacenamiento no cambian.
+- **#17:** se conservan las fotos de ambos integrantes y se prepara la guía de
+  errores. Sigue pendiente aportar las fotos en papel; no se marca como resuelto.
+
+La suite actual tiene 15 pruebas. Las verificaciones de 13 pruebas y los importes
+con punto decimal mencionados arriba corresponden a la revisión histórica del
+5 de octubre, antes de estas correcciones.
+
+En navegador se comprobó el pedido vacío con ambos botones deshabilitados,
+el catálogo formateado, un pedido con dos hamburguesas, quitar el último producto
+y confirmar para mesa 3 por `$24.000,00`. La confirmación dejó el pedido vacío y
+los dos botones deshabilitados, sin errores de consola. El botón usa el id
+`botonConfirmarPedido` para no ocultar la función `confirmarPedido` en el evento
+del formulario. No se repitieron los diálogos de error bloqueantes de la revisión
+anterior: sus ramas se comprobaron en las pruebas de lógica.

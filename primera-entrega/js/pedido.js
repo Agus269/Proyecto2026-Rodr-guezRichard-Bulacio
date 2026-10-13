@@ -41,6 +41,7 @@ const mostrarPedido = () => {
     document.getElementById("productosPedido").innerHTML = filas;
     document.getElementById("totalPedido").textContent = mostrarPrecio(calcularTotal(pedido));
     document.getElementById("vaciarPedido").disabled = pedido.length === 0;
+    document.getElementById("botonConfirmarPedido").disabled = pedido.length === 0;
 };
 
 /**

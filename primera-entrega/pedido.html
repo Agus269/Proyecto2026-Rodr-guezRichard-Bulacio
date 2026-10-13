@@ -62,12 +62,12 @@
 
                 <p>
                     <strong>Total:</strong>
-                    <span id="totalPedido">$0</span>
+                    <span id="totalPedido">$0,00</span>
                 </p>
 
             </div>
             <p><a href="menu.html">Seguir eligiendo productos</a></p>
-            <button type="button" id="vaciarPedido" onclick="vaciarPedido()">Vaciar pedido</button>
+            <button type="button" id="vaciarPedido" onclick="vaciarPedido()" disabled>Vaciar pedido</button>
         </section>
 
         <section>
@@ -129,7 +129,7 @@
                 </p>
 
                 <p>
-                    <button type="submit">
+                    <button type="submit" id="botonConfirmarPedido" disabled>
                         Confirmar Pedido
                     </button>
                 </p>
