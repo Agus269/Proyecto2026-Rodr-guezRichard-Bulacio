@@ -7,6 +7,9 @@ Se conservan las tres fotografías originales aportadas por Nicolás:
 - [Pedido y confirmación](sketch-pedido-confirmacion.png).
 - [Nosotros y boceto mobile inicial](sketch-nosotros-mobile-inicial.png).
 
+Agus agregó después una [fotografía del sketch mobile](<sketch mobile.jpg>)
+con Inicio, Menú y Pedido. Se conserva también ese trabajo.
+
 Son antecedentes del diseño: muestran cuatro enlaces y campos de entrega a
 domicilio. El proyecto evolucionó a cinco páginas y pedidos por mesa. El wireframe
 actualizado documenta esa evolución; las fotos originales no se modificaron.
@@ -17,15 +20,19 @@ Según la corrección comunicada por Nicolás el 5 de octubre, el sketch puede s
 el viejo. Se conservan estas fotos: no se exige rehacerlas para igualar las cinco
 páginas ni reemplazar los campos de domicilio por los del pedido por mesa.
 
-## Cobertura por confirmar
+## Corrección pendiente: mensajes de error
 
 Agus se encarga del sketch, según lo acordado entre los integrantes.
 
-La consigna escrita incluye desktop, mobile y mensajes de error. Las fotos
-muestran las pantallas de escritorio y un boceto pequeño de Inicio en celular;
-no muestran estados de error. Falta confirmar si la aceptación del sketch viejo
-también contempla esta cobertura. Si no la contempla, Agus puede agregar las
-láminas de celular y errores, manteniendo las fotos originales.
+En el [issue #17](https://github.com/Agus269/Proyecto2026-Rodr-guezRichard-Bulacio/issues/17)
+la profesora pidió expresamente incluir los mensajes de error. Las fotografías
+actuales no los muestran: este punto sigue pendiente y no está eximido por la
+aceptación del sketch viejo.
+
+La [guía de errores para dibujar](errores-para-sketch.md) contiene los textos
+reales del sitio y explica qué campos y avisos representar en papel. Es una guía,
+no un sketch entregado. Hay que subir las fotos del complemento y revisar que
+sean legibles antes de dar por resuelto el issue.
 
 El PDF de `../Wireframe/wireframes-restaurante.pdf` documenta el flujo actual.
 Si se agregan fotografías complementarias, se guardan aquí como PNG o JPG.

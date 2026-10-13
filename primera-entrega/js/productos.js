@@ -130,11 +130,14 @@ const guardarPedido = (pedido) => {
 };
 
 /**
- * Presenta un importe en pesos con dos decimales.
+ * Presenta un importe en pesos con separador de miles y dos decimales.
  * @method mostrarPrecio
  * @param {number} precio - Importe a mostrar.
  * @return {string} Precio en pesos.
  */
 const mostrarPrecio = (precio) => {
-    return "$" + precio.toFixed(2);
+    return "$" + new Intl.NumberFormat("es-AR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).format(precio);
 };
