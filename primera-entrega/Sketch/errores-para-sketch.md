@@ -1,15 +1,10 @@
 # Complemento en papel: mensajes de error
 
-Pendiente del [issue #17](https://github.com/Agus269/Proyecto2026-Rodr-guezRichard-Bulacio/issues/17).
-Esta guía no reemplaza las fotografías del sketch.
+Corrección completada en el [issue #17](https://github.com/Agus269/Proyecto2026-Rodr-guezRichard-Bulacio/issues/17).
 
-No hace falta rehacer los dibujos anteriores. En una hoja adicional, dibujar
-Menú y Pedido con el campo que falla, un aviso de error y su botón «Aceptar».
-Mostrar también dónde queda el mensaje en la página. Para los campos inválidos,
-anotar que se limpia el dato y el foco vuelve al campo para corregirlo.
-Se pueden numerar los casos y representar avisos alternativos sobre el mismo
-boceto; incluir una vista de escritorio y otra de celular donde sean legibles.
-
+Las fotografías con los mensajes y estados de error ya fueron incorporadas
+al repositorio mediante el PR #21. Esta guía se conserva como referencia
+del trabajo realizado.
 ## Casos y textos actuales
 
 | Caso a dibujar | Dato de ejemplo | Mensaje que muestra la web |
@@ -34,11 +29,10 @@ Dibujar el resumen sin productos, total `$0,00`, enlace hacia Menú y los botone
 para agregar productos; no representar «Confirmar» como un botón utilizable
 en este estado, según el issue #19.
 
-## Para terminar
+## Resultado final
 
-1. Fotografiar los dibujos sin sombras que tapen los textos.
-2. Guardar las fotos en esta carpeta, por ejemplo `sketch-errores-desktop.jpg`
-   y `sketch-errores-mobile.jpg`.
-3. Enlazarlas en `LEEME.md` y subirlas desde la rama Agus mediante un PR a main.
-4. Avisar qué PR incorpora las fotos. El issue #17 se revisa y cierra recién
-   cuando el complemento está efectivamente incorporado.
+- Se incorporaron las fotografías `sketch mensajes de error.jpg` y
+  `sketch mensajes de error 2.jpg`.
+- Los dibujos representan los estados de error solicitados.
+- El PR #21 fue integrado a `main`.
+- El issue #17 fue cerrado como completado.

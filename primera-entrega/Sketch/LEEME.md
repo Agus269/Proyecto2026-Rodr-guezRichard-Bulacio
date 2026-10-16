@@ -20,19 +20,22 @@ Según la corrección comunicada por Nicolás el 5 de octubre, el sketch puede s
 el viejo. Se conservan estas fotos: no se exige rehacerlas para igualar las cinco
 páginas ni reemplazar los campos de domicilio por los del pedido por mesa.
 
-## Corrección pendiente: mensajes de error
-
-Agus se encarga del sketch, según lo acordado entre los integrantes.
+## Corrección completada: mensajes de error
 
 En el [issue #17](https://github.com/Agus269/Proyecto2026-Rodr-guezRichard-Bulacio/issues/17)
-la profesora pidió expresamente incluir los mensajes de error. Las fotografías
-actuales no los muestran: este punto sigue pendiente y no está eximido por la
-aceptación del sketch viejo.
+la profesora pidió expresamente incluir los mensajes de error.
 
-La [guía de errores para dibujar](errores-para-sketch.md) contiene los textos
-reales del sitio y explica qué campos y avisos representar en papel. Es una guía,
-no un sketch entregado. Hay que subir las fotos del complemento y revisar que
-sean legibles antes de dar por resuelto el issue.
+Agus agregó las fotografías complementarias:
+
+- [Mensajes de error 1](<sketch mensajes de error.jpg>).
+- [Mensajes de error 2](<sketch mensajes de error 2.jpg>).
+
+Estas fotografías muestran los estados de error solicitados para Menú y Pedido.
+La corrección fue incorporada mediante el PR #21 y el issue #17 quedó cerrado
+como completado.
+
+La [guía de errores](errores-para-sketch.md) se conserva como referencia del
+trabajo realizado.
 
 El PDF de `../Wireframe/wireframes-restaurante.pdf` documenta el flujo actual.
 Si se agregan fotografías complementarias, se guardan aquí como PNG o JPG.
