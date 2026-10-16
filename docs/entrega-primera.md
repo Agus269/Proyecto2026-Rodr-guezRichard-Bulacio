@@ -1,6 +1,6 @@
 # Estado de la primera entrega
 
-Revisión del 4 de octubre de 2026, actualizada el 13 de octubre con las correcciones de los issues #17 a #19. Fuente: Proyecto.html de la cátedra y
+Revisión del 4 de octubre de 2026, actualizada el 15 de octubre con las correcciones de los issues #17 a #19. Fuente: Proyecto.html de la cátedra y
 primera-entrega/Requerimientos.md. Este documento distingue trabajo implementado
 de condiciones de entrega todavía pendientes.
 
@@ -72,10 +72,7 @@ del importe conserva los controles existentes para no interrumpir ese clic.
 
 ## Pendientes que requieren a los integrantes
 
-- Ya se incorporaron las tres fotos originales y la foto mobile agregada por
-  Agus. La profesora permite el sketch viejo, pero el issue #17 exige incluir
-  los mensajes de error. Falta dibujar y fotografiar ese complemento en papel;
-  `primera-entrega/Sketch/errores-para-sketch.md` es una guía, no evidencia de entrega.
+
 - Revisar la entrega desde la cuenta de Agus y confirmar que los dos pueden
   explicar el código. Las correcciones preservan su catálogo y almacenamiento.
 
@@ -114,13 +111,13 @@ presentar pizza para compartir en lugar de anunciar postres ausentes del catálo
 | Historial de al menos 10 commits en 4 días | Superado en el historial existente, sin contar merges ni el commit del template. |
 | Conventional Commits | Cumplido en los cambios nuevos; mensajes históricos de Agus pendientes de aceptación docente. |
 | Wireframe desktop/mobile | PDF de las cinco páginas y estados; revisado visualmente. |
-| Sketch | Tres fotos originales y la foto mobile de Agus. Falta el complemento en papel con errores exigido en el issue #17. |
+| Sketch | Completo: fotos desktop/mobile y complemento en papel con mensajes de error incorporado en el PR #21. |
 | Publicación | Comprobada el 5 de octubre: Pages indica built, desde main y /(root); la URL pública responde HTTP 200. |
 
 El intento adicional de probar la alerta de pedido vacío volvió a bloquear el
 control automático del navegador. Sigue pendiente comprobar manualmente Aceptar.
-No se marca la entrega como completa hasta confirmar la cobertura del sketch y
-las comprobaciones manuales indicadas.
+La cobertura del sketch quedó completada con las fotografías incorporadas en el
+PR #21 y el cierre del issue #17.
 
 La publicación se verificó el 5 de octubre de 2026 en la URL del README. Las cinco
 páginas se comprobaron a 1280 y 390 px, sin imágenes rotas, campos sin label,
@@ -152,9 +149,10 @@ como la web, en lugar de «Postres». Las fotos originales del sketch no se alte
 - **#18:** la función compartida `mostrarPrecio` usa `Intl.NumberFormat("es-AR")`.
   Menú, precios unitarios, subtotales, total y confirmación muestran importes
   como `$12.000,00`. Los números del catálogo y del almacenamiento no cambian.
-- **#17:** se conservan las fotos de ambos integrantes y se prepara la guía de
-  errores. Sigue pendiente aportar las fotos en papel; no se marca como resuelto.
-
+- **#17:** se incorporaron las fotografías del complemento en papel con los
+  mensajes y estados de error. El cambio fue integrado mediante el PR #21 y
+  el issue quedó cerrado como completado.
+  
 La suite actual tiene 15 pruebas. Las verificaciones de 13 pruebas y los importes
 con punto decimal mencionados arriba corresponden a la revisión histórica del
 5 de octubre, antes de estas correcciones.
