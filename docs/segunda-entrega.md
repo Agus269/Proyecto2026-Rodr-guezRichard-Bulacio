@@ -90,10 +90,22 @@ modificar App, Vite ni la salida normal de Agus. No es un servidor mock.
   almacenamiento compatible, scripts mock, README y revisión de dependencias.
 - **Cierre Nico:** importar SASS y retirar CSS de plantilla al conectar las rutas;
   reutilizar Button de Agus; repetir flujo completo y revisión accesible conjunta.
-- `npm ci` informó cuatro vulnerabilidades moderadas ya existentes. Un intento
-  posterior de `npm audit` falló por un error del endpoint: no se afirma audit
-  limpio ni se usa `--force`. Revisar y resolver en el bloque técnico de Agus.
+- Audit completo confirmado: cuatro avisos moderados en herramientas de desarrollo
+  (`eslint`, `@eslint/js`, `@eslint/config-array` y `minimatch`), relacionados con
+  [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249).
+  `npm audit --omit=dev` informa cero vulnerabilidades de producción. El audit
+  completo no está limpio: revisar y resolver en el bloque técnico de Agus,
+  sin aplicar automáticamente el cambio mayor que propone `--force`.
 - En el HTML base de Vite todavía quedan el idioma inglés y el título de plantilla.
   Cambiarlos por español, título y metadatos del restaurante al integrar.
 - Verificar la ejecución de la segunda entrega y la forma de publicación que
   corresponda; GitHub Pages de la primera no ejecuta por sí solo el servicio mock.
+
+## Entrega de este avance
+
+Los tres bloques de código se subieron desde Nico en los commits `745ab64`
+(SASS), `7a2dff7` (contenido) y `47b6af3` (Pedido y pruebas).
+El [PR #25](https://github.com/Agus269/Proyecto2026-Rodr-guezRichard-Bulacio/pull/25)
+queda abierto para revisión de Agus e integración. Una revisión independiente
+repitió pruebas, build aislado y lint sin encontrar hallazgos dentro de este alcance.
+Esto no marca la aplicación final como terminada ni acredita pruebas contra una API real.
