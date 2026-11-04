@@ -1,0 +1,13 @@
+@use 'variables' as v;
+
+@mixin tarjeta {
+  padding: 1.5rem;
+  border: .0625rem solid v.$borde;
+  border-radius: v.$radio;
+  background-color: v.$superficie;
+  box-shadow: v.$sombra;
+}
+
+@mixin hasta($ancho) {
+  @media (max-width: $ancho) { @content; }
+}

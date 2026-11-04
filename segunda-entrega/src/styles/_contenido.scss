@@ -1,0 +1,56 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+main section {
+  @include m.tarjeta;
+  margin-bottom: 1.5rem;
+  &:last-child { margin-bottom: 0; }
+}
+.inicio {
+  padding: 3rem 1.5rem;
+  background: linear-gradient(135deg, v.$superficie 55%, v.$acento-claro);
+  text-align: center;
+  > p { max-width: 44rem; margin-left: auto; margin-right: auto; }
+}
+.imagen-portada {
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: v.$radio;
+}
+.destacados, #listaProductos, .lista-productos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.destacados article, .producto {
+  @include m.tarjeta;
+  padding: 1.25rem;
+  p { color: v.$texto-suave; }
+}
+.destacados article { border-top: .3rem solid v.$acento; }
+.producto {
+  display: flex;
+  flex-direction: column;
+  img { width: 100%; height: auto; margin-bottom: 1rem; border-radius: .45rem; }
+  h3 { margin-bottom: .5rem; }
+  label { margin-top: auto; }
+  input { margin-bottom: .75rem; }
+}
+table { width: 100%; border-collapse: collapse; background: v.$superficie; }
+caption { margin-bottom: .5rem; color: v.$texto-suave; font-weight: 700; text-align: left; }
+th, td { padding: .75rem; border: .0625rem solid v.$borde; text-align: left; }
+th { color: v.$superficie; background: v.$principal; }
+tbody tr:nth-child(even) { background: #fbf7f2; }
+#resumenPedido {
+  overflow-x: auto;
+  table { min-width: 42rem; }
+  input { min-width: 5rem; }
+  th[scope='row'] { color: v.$texto; background: v.$acento-claro; }
+  label { font-size: .85rem; }
+}
+.tabla-horarios { overflow-x: auto; }
+#totalPedido { color: v.$principal-oscuro; font-size: 1.2rem; }
+#mensajePedido, #mensajeMenu { min-height: 1.5rem; margin-top: 1rem; font-weight: 700; }
