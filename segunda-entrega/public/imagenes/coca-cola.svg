@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320" role="img" aria-labelledby="titulo">
+<title id="titulo">Gaseosa cola - ilustración original</title>
+<rect width="480" height="320" rx="16" fill="#f6e4c5"/>
+<ellipse cx="240" cy="271" rx="83" ry="15" fill="#d9c8b2"/><rect x="177" y="50" width="126" height="215" rx="20" fill="#af3529"/><ellipse cx="240" cy="57" rx="59" ry="12" fill="#bfc4c4"/><ellipse cx="240" cy="60" rx="19" ry="6" fill="#686f70"/><path d="M185 185Q240 132 295 157" fill="none" stroke="#fff1df" stroke-width="12"/><text x="240" y="129" text-anchor="middle" font-family="Arial" font-size="25" fill="#fff">COLA</text><path d="M193 81V236" stroke="#de6857" stroke-width="8" stroke-linecap="round"/>
+</svg>

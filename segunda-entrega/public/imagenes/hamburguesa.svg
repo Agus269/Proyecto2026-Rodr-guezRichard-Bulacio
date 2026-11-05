@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320" role="img" aria-labelledby="titulo">
+<title id="titulo">Hamburguesa completa - ilustración original</title>
+<rect width="480" height="320" rx="16" fill="#f6e4c5"/>
+<ellipse cx="240" cy="260" rx="176" ry="22" fill="#d9c8b2"/><path d="M100 136 Q116 46 240 48 Q364 46 380 136Z" fill="#d99739"/><g fill="#fff1c8"><ellipse cx="181" cy="87" rx="7" ry="3"/><ellipse cx="261" cy="76" rx="7" ry="3"/><ellipse cx="300" cy="101" rx="7" ry="3"/></g><path d="M96 149L137 135L180 149L230 135L281 150L334 136L383 149L372 169H108Z" fill="#558146"/><rect x="108" y="164" width="264" height="22" rx="11" fill="#c54f38"/><rect x="100" y="190" width="280" height="34" rx="17" fill="#673b28"/><path d="M108 182H372L320 212L245 191L190 210Z" fill="#eabb45"/><path d="M105 226H375Q367 269 240 263Q113 269 105 226" fill="#d99739"/>
+</svg>
