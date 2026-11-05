@@ -1,0 +1,68 @@
+@use 'variables' as v;
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: v.$texto;
+  background: v.$fondo;
+  font-family: 'Nunito Sans', Arial, sans-serif;
+  line-height: 1.6;
+}
+#root { display: flex; flex-direction: column; min-height: 100vh; }
+h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3 { font-family: 'Lora', Georgia, serif; line-height: 1.2; }
+h2, h3 { color: v.$principal-oscuro; }
+a {
+  color: v.$principal;
+  text-underline-offset: .2em;
+  transition: color .2s ease;
+  &:hover { color: v.$principal-oscuro; }
+}
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+  outline: .2rem solid v.$foco;
+  outline-offset: .2rem;
+}
+header {
+  padding: 1.25rem 1rem;
+  color: v.$superficie;
+  background: linear-gradient(135deg, v.$principal, v.$principal-oscuro);
+  text-align: center;
+  h1 { margin-bottom: 0; font-size: 2.25rem; }
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .5rem;
+  padding: .75rem 1rem;
+  background: v.$principal-oscuro;
+  a {
+    padding: .45rem .8rem;
+    color: v.$superficie;
+    border-radius: .25rem;
+    font-weight: 700;
+    text-decoration: none;
+    &:hover, &[aria-current='page'] { color: v.$principal-oscuro; background: v.$acento; }
+    &:focus-visible { outline-color: v.$superficie; }
+  }
+}
+main {
+  flex: 1;
+  width: 94%;
+  max-width: v.$ancho-contenido;
+  margin: 0 auto;
+  padding: 2rem 0;
+  overflow-wrap: break-word;
+  > h2 { margin-bottom: .5rem; font-size: 2.4rem; }
+  > p { color: v.$texto-suave; }
+}
+address { font-style: normal; }
+ul { padding-left: 1.25rem; }
+li + li { margin-top: .4rem; }
+footer {
+  padding: 1.25rem 1rem;
+  color: v.$superficie;
+  background: v.$principal-oscuro;
+  text-align: center;
+  p { margin-bottom: 0; }
+}

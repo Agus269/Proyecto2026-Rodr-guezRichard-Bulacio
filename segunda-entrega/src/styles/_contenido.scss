@@ -1,0 +1,68 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+main section {
+  @include m.tarjeta;
+  margin-bottom: 1.5rem;
+  &:last-child { margin-bottom: 0; }
+}
+main .inicio {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem;
+  border-top: .3rem solid v.$acento;
+  background: v.$superficie;
+  h2 { max-width: 13ch; margin-bottom: 1rem; font-size: clamp(2rem, 4vw, 3.25rem); }
+  p { max-width: 42ch; color: v.$texto-suave; }
+}
+.inicio-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  .enlace-pedido { font-weight: 700; }
+}
+.imagen-portada {
+  display: block;
+  width: 100%;
+  max-width: 25rem;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: v.$radio;
+}
+.destacados, #listaProductos, .lista-productos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.destacados article, .producto {
+  @include m.tarjeta;
+  padding: 1.25rem;
+  p { color: v.$texto-suave; }
+}
+.destacados article { border-top: .3rem solid v.$acento; }
+.producto {
+  display: flex;
+  flex-direction: column;
+  img { width: 100%; height: auto; margin-bottom: 1rem; border-radius: .45rem; }
+  h3 { margin-bottom: .5rem; }
+  label { margin-top: auto; }
+  input { margin-bottom: .75rem; }
+}
+table { width: 100%; border-collapse: collapse; background: v.$superficie; }
+caption { margin-bottom: .5rem; color: v.$texto-suave; font-weight: 700; text-align: left; }
+th, td { padding: .75rem; border: .0625rem solid v.$borde; text-align: left; }
+th { color: v.$superficie; background: v.$principal; }
+tbody tr:nth-child(even) { background: #fbf7f2; }
+#resumenPedido {
+  overflow-x: auto;
+  table { min-width: 42rem; }
+  input { min-width: 5rem; }
+  th[scope='row'] { color: v.$texto; background: v.$acento-claro; }
+  label { font-size: .85rem; }
+}
+.tabla-horarios { overflow-x: auto; }
+#totalPedido { color: v.$principal-oscuro; font-size: 1.2rem; }
+#mensajePedido, #mensajeMenu { min-height: 1.5rem; margin-top: 1rem; font-weight: 700; }

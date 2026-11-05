@@ -1,0 +1,24 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+@include m.hasta(v.$tablet) {
+  .destacados, #listaProductos, .lista-productos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@include m.hasta(v.$celular) {
+  main .inicio { grid-template-columns: 1fr; gap: .5rem; padding: 1.5rem; }
+  .inicio-acciones { flex-direction: column; align-items: stretch; text-align: center; }
+  header { padding: 1.75rem 1rem; h1 { font-size: 2rem; } }
+  main { width: 96%; padding: 1rem 0; > h2 { font-size: 1.8rem; } }
+  main section { padding: 1rem; }
+  nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    a { text-align: center; &:last-child { grid-column: 1 / -1; } }
+  }
+  .destacados, #listaProductos, .lista-productos { grid-template-columns: 1fr; }
+  button, .boton { width: 100%; margin-left: 0; margin-right: 0; text-align: center; }
+  th, td { padding: .55rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms; }
+}
