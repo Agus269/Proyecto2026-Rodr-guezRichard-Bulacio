@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320" role="img" aria-labelledby="titulo">
+<title id="titulo">Pizza de muzzarella - ilustración original</title>
+<rect width="480" height="320" rx="16" fill="#f6e4c5"/>
+<ellipse cx="240" cy="259" rx="159" ry="17" fill="#d9c8b2"/><ellipse cx="240" cy="161" rx="158" ry="108" fill="#d99739"/><ellipse cx="240" cy="161" rx="140" ry="91" fill="#b74730"/><ellipse cx="240" cy="161" rx="130" ry="82" fill="#f2d57e"/><g fill="#fff0c0"><ellipse cx="180" cy="124" rx="27" ry="16"/><ellipse cx="289" cy="161" rx="30" ry="20"/><ellipse cx="199" cy="207" rx="26" ry="12"/></g><g fill="#507249"><ellipse cx="242" cy="104" rx="12" ry="5" transform="rotate(25 242 104)"/><ellipse cx="169" cy="176" rx="12" ry="5"/><ellipse cx="291" cy="207" rx="12" ry="5"/></g><path d="M240 161L348 91M240 161L382 203M240 161L135 243" stroke="#d99739" stroke-width="3"/>
+</svg>

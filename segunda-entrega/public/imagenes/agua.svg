@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320" role="img" aria-labelledby="titulo">
+<title id="titulo">Agua mineral - ilustración original</title>
+<rect width="480" height="320" rx="16" fill="#f6e4c5"/>
+<ellipse cx="240" cy="275" rx="72" ry="13" fill="#d9c8b2"/><path d="M211 58H269V89Q294 107 294 135V249Q294 270 273 270H207Q186 270 186 249V135Q186 107 211 89Z" fill="#bedae0" stroke="#75a8b4" stroke-width="4"/><rect x="207" y="43" width="66" height="28" rx="5" fill="#487e96"/><path d="M191 177Q221 164 249 177Q271 186 290 174V246Q290 262 270 262H211Q191 262 191 246Z" fill="#82bdcc"/><rect x="188" y="126" width="104" height="57" fill="#f8fcff"/><text x="240" y="160" text-anchor="middle" font-family="Arial" font-size="23" fill="#356075">AGUA</text>
+</svg>
