@@ -5,6 +5,8 @@
   .destacados, #listaProductos, .lista-productos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @include m.hasta(v.$celular) {
+  main .inicio { grid-template-columns: 1fr; gap: .5rem; padding: 1.5rem; }
+  .inicio-acciones { flex-direction: column; align-items: stretch; text-align: center; }
   header { padding: 1.75rem 1rem; h1 { font-size: 2rem; } }
   main { width: 96%; padding: 1rem 0; > h2 { font-size: 1.8rem; } }
   main section { padding: 1rem; }

@@ -16,6 +16,7 @@ test('las páginas de contenido se renderizan con enlaces internos, imagen y tab
       return renderToStaticMarkup(h(MemoryRouter, null, h(Page)))
     }
     const inicio = await render('Inicio')
+    assert.match(inicio, /Buena comida, directo a tu mesa/)
     assert.match(inicio, /href="\/menu"/)
     assert.match(inicio, /href="\/pedido"/)
     assert.match(inicio, /alt="Ilustración de una hamburguesa completa"/)

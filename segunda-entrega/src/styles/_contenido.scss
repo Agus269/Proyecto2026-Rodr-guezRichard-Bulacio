@@ -6,16 +6,28 @@ main section {
   margin-bottom: 1.5rem;
   &:last-child { margin-bottom: 0; }
 }
-.inicio {
-  padding: 3rem 1.5rem;
-  background: linear-gradient(135deg, v.$superficie 55%, v.$acento-claro);
-  text-align: center;
-  > p { max-width: 44rem; margin-left: auto; margin-right: auto; }
+main .inicio {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem;
+  border-top: .3rem solid v.$acento;
+  background: v.$superficie;
+  h2 { max-width: 13ch; margin-bottom: 1rem; font-size: clamp(2rem, 4vw, 3.25rem); }
+  p { max-width: 42ch; color: v.$texto-suave; }
+}
+.inicio-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  .enlace-pedido { font-weight: 700; }
 }
 .imagen-portada {
   display: block;
   width: 100%;
-  max-width: 20rem;
+  max-width: 25rem;
   height: auto;
   margin: 1rem auto;
   border-radius: v.$radio;

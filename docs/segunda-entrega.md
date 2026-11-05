@@ -109,3 +109,24 @@ El [PR #25](https://github.com/Agus269/Proyecto2026-Rodr-guezRichard-Bulacio/pul
 queda abierto para revisión de Agus e integración. Una revisión independiente
 repitió pruebas, build aislado y lint sin encontrar hallazgos dentro de este alcance.
 Esto no marca la aplicación final como terminada ni acredita pruebas contra una API real.
+
+## Actualización del 5 de noviembre: cierre de rama Nico
+
+Esta sección actualiza los pendientes históricos del día anterior. Se incorporó
+`origin/main` (`91705cb`) a Nico sin conflictos. Agus ya agregó Router, Button,
+Menú, ProductCard, servicio mock, imágenes públicas y README. No se conectaron
+las páginas de Nico ni el SASS en App/main: esa integración se reserva para
+después de revisar y fusionar el PR #25.
+
+Se compactó la cabecera mediante SASS y se reorganizó Inicio con texto e imagen
+en dos columnas, una llamada principal a Menú y otra secundaria a Pedido.
+En celular se apila en una columna. No se agregaron imágenes ni dependencias.
+
+Para la revisión conjunta: comprobar cantidades enteras y el máximo acumulado
+de 99 en ProductCard, recuperación frente a almacenamiento corrupto/bloqueado,
+formato de precios con dos decimales y el tipo de id devuelto por el mock frente
+al contrato numérico de Pedido. Son comprobaciones pendientes de integración;
+no se modificó el código de Agus para resolverlas unilateralmente.
+
+El PR queda abierto: primero revisión entre integrantes, luego merge, y recién
+después conectar las páginas, estilos y Button y repetir el flujo completo.

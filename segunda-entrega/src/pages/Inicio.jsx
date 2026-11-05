@@ -4,14 +4,16 @@ import hamburguesa from '@/assets/hamburguesa.svg'
 const Inicio = () => (
   <>
     <section className="inicio">
-      <h2>Bienvenidos</h2>
+      <div className="inicio-texto">
+        <h2>Buena comida, directo a tu mesa</h2>
+        <p>Platos clásicos, porciones para compartir y un momento para disfrutar.
+          Elegí del menú y prepará tu pedido sin levantarte de la mesa.</p>
+        <div className="inicio-acciones">
+          <Link className="boton" to="/menu">Ver menú</Link>
+          <Link className="enlace-pedido" to="/pedido">Revisar mi pedido</Link>
+        </div>
+      </div>
       <img className="imagen-portada" src={hamburguesa} alt="Ilustración de una hamburguesa completa" width="480" height="320" />
-      <p>Somos un espacio para disfrutar buena comida y compartir un momento agradable.
-        Consultá nuestro menú y prepará tu pedido directamente desde la mesa.</p>
-      <p>
-        <Link className="boton" to="/menu">Ver menú</Link>
-        <Link className="boton" to="/pedido">Hacer pedido</Link>
-      </p>
     </section>
     <section>
       <h2>Una experiencia para compartir</h2>

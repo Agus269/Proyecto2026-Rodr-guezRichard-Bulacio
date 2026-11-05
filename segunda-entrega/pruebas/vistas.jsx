@@ -23,7 +23,7 @@ const cargarEjemplo = () => {
 createRoot(document.getElementById('root')).render(
   <HashRouter>
     <aside aria-label="Herramientas de prueba">
-      <p>Vista aislada de Nico. Menú, API y routing definitivo pendientes de Agus.</p>
+      <p>Vista aislada de Nico. La integración con Menú/API y Router se revisa después del PR #25.</p>
       <button type="button" onClick={cargarEjemplo}>Cargar pedido de prueba</button>
     </aside>
     <Routes>
@@ -32,7 +32,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="nosotros" element={<Nosotros />} />
         <Route path="ubicacion" element={<Ubicacion />} />
         <Route path="pedido" element={<Pedido />} />
-        <Route path="menu" element={<section><h2>Menú pendiente de integración</h2><p>Esta vista no simula el servicio mock ni la página de Agus.</p></section>} />
+        <Route path="menu" element={<section><h2>Menú pendiente de integración</h2><p>El Menú de Agus ya está en main. Esta vista aislada no lo conecta todavía.</p></section>} />
       </Route>
     </Routes>
   </HashRouter>,
