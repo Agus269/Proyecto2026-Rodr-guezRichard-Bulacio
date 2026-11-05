@@ -6,7 +6,7 @@
       "descripcion": "Hamburguesa con carne, queso, lechuga y tomate.",
       "categoria": "comida",
       "precio": 12000,
-      "imagen": "/imagenes/hamburguesa.svg"
+      "imagen": "/imagenes/hamburguesa.webp"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "descripcion": "Pizza de muzzarella con salsa de tomate y orégano.",
       "categoria": "comida",
       "precio": 11000,
-      "imagen": "/imagenes/pizza.svg"
+      "imagen": "/imagenes/pizza.webp"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "descripcion": "Milanesa de carne acompañada con papas fritas.",
       "categoria": "comida",
       "precio": 13500,
-      "imagen": "/imagenes/milanesa.svg"
+      "imagen": "/imagenes/milanesa.webp"
     },
     {
       "id": 4,

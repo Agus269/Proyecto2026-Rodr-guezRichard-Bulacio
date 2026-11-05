@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Button from '@/components/Button'
 import {
   leerPedido, guardarPedido, calcularTotal, mostrarPrecio, cantidadValida,
   validarApellido, validarMesa, validarPago,
@@ -110,7 +111,7 @@ const Pedido = () => {
                     </td>
                     <td>{mostrarPrecio(item.precio)}</td>
                     <td>{mostrarPrecio(item.precio * item.cantidad)}</td>
-                    <td><button type="button" onClick={() => quitarProducto(item.id)}>Quitar {item.nombre}</button></td>
+                    <td><Button onClick={() => quitarProducto(item.id)}>Quitar {item.nombre}</Button></td>
                   </tr>
                 )
               })}
@@ -119,8 +120,8 @@ const Pedido = () => {
           </table>
         </div>
         <p><strong>Total: </strong><span id="totalPedido">{mostrarPrecio(calcularTotal(pedido))}</span></p>
-        <button type="button" onClick={() => navigate('/menu')}>Seguir eligiendo productos</button>
-        <button type="button" onClick={vaciar} disabled={pedido.length === 0}>Vaciar pedido</button>
+        <Button onClick={() => navigate('/menu')}>Seguir eligiendo productos</Button>
+        <Button onClick={vaciar} disabled={pedido.length === 0}>Vaciar pedido</Button>
       </section>
       <section aria-labelledby="tituloDatos">
         <h3 id="tituloDatos">Datos del pedido</h3>
@@ -153,7 +154,7 @@ const Pedido = () => {
             </select>
           </p>
           <p id="error-metodoPago" className="error-campo" aria-live="polite">{errores.metodoPago}</p>
-          <button type="submit" disabled={pedido.length === 0}>Confirmar Pedido</button>
+          <Button type="submit" disabled={pedido.length === 0}>Confirmar Pedido</Button>
         </form>
         <p id="mensajePedido" ref={mensajeRef} role="status" aria-live="polite" tabIndex="-1">{mensaje}</p>
       </section>

@@ -11,6 +11,12 @@ const { createServer } = await import(pathToFileURL(require.resolve('vite')).hre
 test('las páginas de contenido se renderizan con enlaces internos, imagen y tabla accesibles', async () => {
   const server = await createServer({root:fileURLToPath(new URL('../segunda-entrega',import.meta.url)),server:{middlewareMode:true},appType:'custom'})
   try {
+    const api = await server.ssrLoadModule('/src/api/productos.js')
+    const fetchAnterior = globalThis.fetch
+    globalThis.fetch = async () => { throw new Error('Failed to fetch') }
+    try {
+      await assert.rejects(() => api.obtenerProductos(), /servicio mock/)
+    } finally { globalThis.fetch = fetchAnterior }
     const render = async (pagina) => {
       const {default: Page} = await server.ssrLoadModule(`/src/pages/${pagina}.jsx`)
       return renderToStaticMarkup(h(MemoryRouter, null, h(Page)))
@@ -19,7 +25,7 @@ test('las páginas de contenido se renderizan con enlaces internos, imagen y tab
     assert.match(inicio, /Buena comida, directo a tu mesa/)
     assert.match(inicio, /href="\/menu"/)
     assert.match(inicio, /href="\/pedido"/)
-    assert.match(inicio, /alt="Ilustración de una hamburguesa completa"/)
+    assert.match(inicio, /alt="Hamburguesa completa emplatada con papas fritas, imagen orientativa"/)
     assert.match(inicio, /Para compartir/)
     const nosotros = await render('Nosotros')
     assert.match(nosotros, /href="\/ubicacion"/)
@@ -39,5 +45,12 @@ test('las páginas de contenido se renderizan con enlaces internos, imagen y tab
     assert.match(pedido, /<label for="metodoPago">/)
     assert.match(pedido, /aria-live="polite"/)
     assert.match(pedido, /\$0,00/)
+    const {default: App} = await server.ssrLoadModule('/src/App.jsx')
+    for (const [ruta, esperado] of [['/','Buena comida'],['/nosotros','Nuestra historia'],['/ubicacion','Horarios de atención'],['/pedido','Resumen del pedido'],['/no-existe','Página no encontrada']]) {
+      const html = renderToStaticMarkup(h(MemoryRouter, {initialEntries:[ruta]}, h(App)))
+      assert.ok(html.includes(esperado), `La ruta ${ruta} debe mostrar su página real`)
+      assert.equal((html.match(/<main/g)||[]).length, 1)
+      assert.equal((html.match(/<h1/g)||[]).length, 1)
+    }
   } finally { await server.close() }
 })

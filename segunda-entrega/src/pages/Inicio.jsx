@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import hamburguesa from '@/assets/hamburguesa.svg'
+import hamburguesa from '@/assets/hamburguesa.webp'
 
 const Inicio = () => (
   <>
@@ -13,7 +13,10 @@ const Inicio = () => (
           <Link className="enlace-pedido" to="/pedido">Revisar mi pedido</Link>
         </div>
       </div>
-      <img className="imagen-portada" src={hamburguesa} alt="Ilustración de una hamburguesa completa" width="480" height="320" />
+      <figure className="portada-plato">
+        <img className="imagen-portada" src={hamburguesa} alt="Hamburguesa completa emplatada con papas fritas, imagen orientativa" width="1200" height="800" />
+        <figcaption>Imagen ilustrativa generada para este proyecto académico.</figcaption>
+      </figure>
     </section>
     <section>
       <h2>Una experiencia para compartir</h2>

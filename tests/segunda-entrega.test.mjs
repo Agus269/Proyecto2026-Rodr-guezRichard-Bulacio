@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import {
   validarApellido, validarMesa, validarPago, cantidadValida,
-  mostrarPrecio, calcularTotal, leerPedido, guardarPedido,
+  mostrarPrecio, calcularTotal, leerPedido, guardarPedido, agregarAlPedido, normalizarProducto,
 } from '../segunda-entrega/src/utils/pedido.js'
 
 test('apellido admite letras y rechaza vacío, números y longitud incorrecta', () => {
@@ -12,6 +12,22 @@ test('apellido admite letras y rechaza vacío, números y longitud incorrecta', 
   for (const apellido of ['', ' ', 'A', '123', 'Nico1', '--', 'a'.repeat(51)]) {
     assert.notEqual(validarApellido(apellido), '')
   }
+})
+
+test('normaliza ids string del mock sin cambiar nombres ni precios', () => {
+  const producto = {id:'1',nombre:'Hamburguesa',precio:12000,imagen:'/imagenes/hamburguesa.webp'}
+  assert.equal(normalizarProducto(producto).id, 1)
+  assert.equal(normalizarProducto(producto).precio, 12000)
+  for (const id of ['no', '', 0, -1, 1.5]) assert.throws(() => normalizarProducto({...producto,id}))
+})
+
+test('Menú acumula sin duplicar, rechaza decimales y no supera 99', () => {
+  const producto = {id:1,nombre:'Hamburguesa',precio:12000}
+  const pedido = [{...producto,cantidad:98}]
+  assert.equal(agregarAlPedido(pedido,producto,1)[0].cantidad, 99)
+  assert.equal(pedido[0].cantidad, 98)
+  for (const cantidad of [0, 1.5, 2, NaN]) assert.throws(() => agregarAlPedido(pedido,producto,cantidad))
+  assert.equal(agregarAlPedido([],producto,2)[0].cantidad, 2)
 })
 
 test('mesa y pago requieren una opción real del formulario', () => {

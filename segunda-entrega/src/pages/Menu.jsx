@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { obtenerProductos } from '@/api/productos'
 import ProductCard from '@/components/ProductCard'
+import { Link } from 'react-router-dom'
 
 const Menu = () => {
   const [productos, setProductos] = useState([])
@@ -33,9 +34,13 @@ const Menu = () => {
 
   return (
     <section>
-      <h1>Menú</h1>
+      <h2>Menú</h2>
+      <p>Elegí tus platos y revisá el pedido antes de confirmar. Precios en pesos argentinos.</p>
+      <p>Imágenes orientativas: las fotografías de platos fueron generadas para esta demostración.</p>
+      <p><Link to="/pedido">Revisar mi pedido</Link></p>
 
-      <div>
+      {productos.length === 0 && <p role="status">No hay productos disponibles por el momento.</p>}
+      <div className="lista-productos">
         {productos.map((producto) => (
           <ProductCard
             key={producto.id}

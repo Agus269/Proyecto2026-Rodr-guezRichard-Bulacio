@@ -63,7 +63,7 @@ primera-entrega/
 └── Wireframe/
 ```
 
-La carpeta `segunda-entrega` se reservará para la evolución del proyecto con React y los contenidos correspondientes al segundo parcial.
+La carpeta `segunda-entrega` contiene la aplicación React integrada. Sus pasos de ejecución y tecnologías están en [su README](segunda-entrega/README.md). Requiere ejecutar Vite y la API mock en dos terminales; la publicación de la primera entrega no ejecuta el mock.
 
 ## Ejecución
 

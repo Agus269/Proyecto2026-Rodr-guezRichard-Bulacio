@@ -1,64 +1,51 @@
 import { useState } from 'react'
 
 import Button from '@/components/Button'
+import { leerPedido, guardarPedido, cantidadValida, agregarAlPedido as crearPedidoConProducto, mostrarPrecio } from '@/utils/pedido'
 
 const ProductCard = ({ producto }) => {
-  const [cantidad, setCantidad] = useState(1)
+  const [cantidad, setCantidad] = useState('1')
   const [mensaje, setMensaje] = useState('')
+  const [error, setError] = useState('')
 
   const agregarAlPedido = () => {
-    const pedidoGuardado =
-      JSON.parse(localStorage.getItem('pedido')) || []
-
-    const productoExistente = pedidoGuardado.find(
-      (item) => item.id === producto.id
-    )
-
-    if (productoExistente) {
-      productoExistente.cantidad += cantidad
-    } else {
-      pedidoGuardado.push({
-        id: producto.id,
-        nombre: producto.nombre,
-        precio: producto.precio,
-        cantidad,
-      })
+    setMensaje('')
+    try {
+      const pedido = crearPedidoConProducto(leerPedido(), producto, Number(cantidad))
+      if (!guardarPedido(pedido)) throw new Error('El navegador no permite guardar el pedido. Habilitá el almacenamiento del sitio y volvé a intentar.')
+      setError('')
+      setMensaje(`${producto.nombre} agregado al pedido. Unidades: ${pedido.find((item) => item.id === producto.id).cantidad}.`)
+    } catch (error) {
+      setError(error.message)
     }
-
-    localStorage.setItem(
-      'pedido',
-      JSON.stringify(pedidoGuardado)
-    )
-
-    setMensaje(`${producto.nombre} agregado al pedido`)
   }
 
   const cambiarCantidad = (event) => {
-    const nuevaCantidad = Number(event.target.value)
-
-    if (nuevaCantidad >= 1 && nuevaCantidad <= 99) {
-      setCantidad(nuevaCantidad)
-    }
+    setCantidad(event.target.value)
+    setMensaje('')
+    setError(cantidadValida(Number(event.target.value)) ? '' : 'Ingresá una cantidad entera entre 1 y 99.')
   }
 
   return (
-    <article>
+    <article className="producto">
       <img
         src={producto.imagen}
-        alt={`Ilustración de ${producto.nombre}`}
-        width="240"
+        alt={`Imagen orientativa de ${producto.nombre}`}
+        width="480"
+        height="320"
+        loading="lazy"
       />
 
-      <h2>{producto.nombre}</h2>
+      <h3>{producto.nombre}</h3>
 
       <p>{producto.descripcion}</p>
 
       <p>
-        Precio: ${producto.precio.toLocaleString('es-AR')}
+        {mostrarPrecio(producto.precio)}
       </p>
 
       <label htmlFor={`cantidad-${producto.id}`}>
-        Cantidad:
+        Cantidad de {producto.nombre}:
       </label>
 
       <input
@@ -66,9 +53,13 @@ const ProductCard = ({ producto }) => {
         type="number"
         min="1"
         max="99"
+        step="1"
         value={cantidad}
         onChange={cambiarCantidad}
+        aria-invalid={Boolean(error)}
+        aria-describedby={`error-producto-${producto.id}`}
       />
+      <p id={`error-producto-${producto.id}`} className="error-campo" aria-live="polite">{error}</p>
 
       <Button onClick={agregarAlPedido}>
         Agregar al pedido

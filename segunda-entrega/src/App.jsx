@@ -2,24 +2,22 @@ import { Route, Routes } from 'react-router-dom'
 
 import Layout from '@/components/Layout'
 import Menu from '@/pages/Menu'
-
-const InicioPendiente = () => <h1>Inicio</h1>
-
-const NosotrosPendiente = () => <h1>Nosotros</h1>
-
-const UbicacionPendiente = () => <h1>Ubicación</h1>
-
-const PedidoPendiente = () => <h1>Pedido</h1>
+import Inicio from '@/pages/Inicio'
+import Nosotros from '@/pages/Nosotros'
+import Ubicacion from '@/pages/Ubicacion'
+import Pedido from '@/pages/Pedido'
+import { Link } from 'react-router-dom'
 
 const App = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<InicioPendiente />} />
+        <Route index element={<Inicio />} />
         <Route path="menu" element={<Menu />} />
-        <Route path="nosotros" element={<NosotrosPendiente />} />
-        <Route path="ubicacion" element={<UbicacionPendiente />} />
-        <Route path="pedido" element={<PedidoPendiente />} />
+        <Route path="nosotros" element={<Nosotros />} />
+        <Route path="ubicacion" element={<Ubicacion />} />
+        <Route path="pedido" element={<Pedido />} />
+        <Route path="*" element={<section><h2>Página no encontrada</h2><Link to="/">Volver a Inicio</Link></section>} />
       </Route>
     </Routes>
   )

@@ -1,4 +1,23 @@
 /** Comprueba las unidades antes de guardarlas o confirmar. */
+export const normalizarProducto = (producto) => {
+  const id = Number(producto?.id)
+  if (!Number.isInteger(id) || id < 1 || typeof producto?.nombre !== 'string' || !producto.nombre.trim() ||
+    typeof producto.precio !== 'number' || !Number.isFinite(producto.precio) || producto.precio < 0) {
+    throw new Error('El catálogo contiene un producto inválido.')
+  }
+  return {...producto,id}
+}
+
+export const agregarAlPedido = (pedido, producto, cantidad) => {
+  const existente = pedido.find((item) => item.id === producto.id)
+  const acumulada = cantidad + (existente?.cantidad ?? 0)
+  if (!cantidadValida(cantidad) || !cantidadValida(acumulada)) {
+    throw new Error('Ingresá una cantidad entera entre 1 y 99. Cada producto admite hasta 99 unidades en el pedido.')
+  }
+  if (existente) return pedido.map((item) => item.id === producto.id ? {...item,cantidad:acumulada} : item)
+  return [...pedido,{id:producto.id,nombre:producto.nombre,precio:producto.precio,cantidad}]
+}
+
 export const cantidadValida = (cantidad) => {
   return typeof cantidad === 'number' && Number.isInteger(cantidad) && cantidad >= 1 && cantidad <= 99
 }
