@@ -7,5 +7,5 @@ const require = createRequire(new URL('../segunda-entrega/package.json', import.
 const { build } = await import(pathToFileURL(require.resolve('vite')).href)
 const root = fileURLToPath(new URL('../segunda-entrega', import.meta.url))
 const outDir = await mkdtemp(path.join(tmpdir(), 'restaurante-build-nico-'))
-await build({root,build:{outDir,emptyOutDir:false,rolldownOptions:{input:path.join(root,'pruebas/index.html')}}})
-console.log('Build de las cuatro páginas y SASS comprobado en:', outDir)
+await build({root,build:{outDir,emptyOutDir:false}})
+console.log('Build de la aplicación integrada y SASS comprobado en:', outDir)
