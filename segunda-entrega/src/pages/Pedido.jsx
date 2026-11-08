@@ -5,6 +5,7 @@ import { obtenerPedido, actualizarCantidad, quitarProducto as eliminarProducto, 
 import {
   calcularTotal, mostrarPrecio, cantidadValida,
   validarApellido, validarMesa, validarPago,
+  leerDatosPedido, guardarDatosPedido,
 } from '@/utils/pedido'
 
 const Pedido = () => {
@@ -13,7 +14,7 @@ const Pedido = () => {
   const [guardando, setGuardando] = useState(false)
   const operacionRef = useRef(false)
   const [cantidades, setCantidades] = useState({})
-  const [datos, setDatos] = useState({apellido:'',mesa:'',metodoPago:''})
+  const [datos, setDatos] = useState(leerDatosPedido)
   const [errores, setErrores] = useState({})
   const [mensaje, setMensaje] = useState('')
   const mensajeRef = useRef(null)
@@ -22,12 +23,23 @@ const Pedido = () => {
 
   useEffect(() => {
     let activo = true
-    obtenerPedido()
-      .then((pedido) => { if (activo) setPedido(pedido) })
-      .catch((error) => { if (activo) setMensaje(error.message) })
-      .finally(() => { if (activo) setCargando(false) })
+    const cargarPedido = async () => {
+      try {
+        const pedidoActual = await obtenerPedido()
+        if (activo) setPedido(pedidoActual)
+      } catch (error) {
+        if (activo) setMensaje(error.message)
+      } finally {
+        if (activo) setCargando(false)
+      }
+    }
+    cargarPedido()
     return () => { activo = false }
   }, [])
+
+  useEffect(() => {
+    guardarDatosPedido(datos)
+  }, [datos])
 
   const guardarCambios = async (operacion) => {
     if (operacionRef.current) return false

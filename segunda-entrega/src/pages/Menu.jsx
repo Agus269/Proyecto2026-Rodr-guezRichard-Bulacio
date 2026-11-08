@@ -40,6 +40,7 @@ const Menu = () => {
     <section>
       <h2>Menú</h2>
       <p>Elegí tus platos y revisá el pedido antes de confirmar. Precios en pesos argentinos.</p>
+      <p>La cantidad indica el total que querés de cada producto. Guardarla reemplaza la anterior; no suma unidades adicionales.</p>
       <p>Imágenes orientativas: las fotografías de platos fueron generadas para esta demostración.</p>
       <p><Link to="/pedido">Revisar mi pedido</Link></p>
 
@@ -49,7 +50,7 @@ const Menu = () => {
           <ProductCard
             key={producto.id}
             producto={producto}
-            cantidadInicial={pedido.find((item) => item.id === producto.id)?.cantidad ?? 1}
+            cantidadInicial={pedido.find((item) => item.id === producto.id)?.cantidad ?? 0}
           />
         ))}
       </div>

@@ -10,8 +10,9 @@ import { once } from 'node:events'
 import { createServer as createNetServer } from 'node:net'
 import {
   validarApellido, validarMesa, validarPago, cantidadValida,
-  mostrarPrecio, calcularTotal, agregarAlPedido, normalizarProducto,
+  mostrarPrecio, calcularTotal, normalizarProducto,
 } from '../segunda-entrega/src/utils/pedido.js'
+import * as preferencias from '../segunda-entrega/src/utils/pedido.js'
 
 test('apellido admite letras y rechaza vacío, números y longitud incorrecta', () => {
   for (const apellido of ['Bulacio', 'Rodríguez Richard', "O'Connor", 'Pérez-Gómez']) {
@@ -29,13 +30,31 @@ test('normaliza ids string del mock sin cambiar nombres ni precios', () => {
   for (const id of ['no', '', 0, -1, 1.5]) assert.throws(() => normalizarProducto({...producto,id}))
 })
 
-test('Menú acumula sin duplicar, rechaza decimales y no supera 99', () => {
-  const producto = {id:1,nombre:'Hamburguesa',precio:12000}
-  const pedido = [{...producto,cantidad:98}]
-  assert.equal(agregarAlPedido(pedido,producto,1)[0].cantidad, 99)
-  assert.equal(pedido[0].cantidad, 98)
-  for (const cantidad of [0, 1.5, 2, NaN]) assert.throws(() => agregarAlPedido(pedido,producto,cantidad))
-  assert.equal(agregarAlPedido([],producto,2)[0].cantidad, 2)
+test('conserva mesa y pago entre visitas; descarta JSON dañado y tolera almacenamiento bloqueado', (t) => {
+  let contenido = null
+  let bloqueado = false
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'localStorage')
+  Object.defineProperty(globalThis, 'localStorage', {configurable:true,writable:true,value:{
+    getItem: () => { if (bloqueado) throw new Error('bloqueado'); return contenido },
+    setItem: (_clave, valor) => { if (bloqueado) throw new Error('lleno'); contenido = valor },
+  }})
+  t.after(() => {
+    if (descriptor) Object.defineProperty(globalThis, 'localStorage', descriptor)
+    else delete globalThis.localStorage
+  })
+  assert.deepEqual(preferencias.leerDatosPedido(), {apellido:'',mesa:'',metodoPago:''})
+  preferencias.guardarDatosPedido({apellido:'Bulacio',mesa:'3',metodoPago:'efectivo'})
+  assert.deepEqual(JSON.parse(contenido), {mesa:'3',metodoPago:'efectivo'})
+  assert.deepEqual(preferencias.leerDatosPedido(), {apellido:'',mesa:'3',metodoPago:'efectivo'})
+  contenido = '{roto'
+  assert.deepEqual(preferencias.leerDatosPedido(), {apellido:'',mesa:'',metodoPago:''})
+  contenido = '{"mesa":"99","metodoPago":"otro"}'
+  assert.deepEqual(preferencias.leerDatosPedido(), {apellido:'',mesa:'',metodoPago:''})
+  contenido = '{"mesa":true,"metodoPago":"tarjeta"}'
+  assert.deepEqual(preferencias.leerDatosPedido(), {apellido:'',mesa:'',metodoPago:'tarjeta'})
+  bloqueado = true
+  assert.deepEqual(preferencias.leerDatosPedido(), {apellido:'',mesa:'',metodoPago:''})
+  assert.doesNotThrow(() => preferencias.guardarDatosPedido({mesa:'3',metodoPago:'efectivo'}))
 })
 
 test('mesa y pago requieren una opción real del formulario', () => {
@@ -111,14 +130,25 @@ test('API usa VITE_BASE_URL y persiste el pedido en JSON Server', async (t) => {
     assert.equal(registro.productoId, productos[0].id)
     assert.equal(registro.cantidad, 2)
 
-    await Promise.all([api.agregarProducto(productos[0], 1), api.agregarProducto(productos[0], 2)])
+    // El campo de Menú expresa el total deseado, no unidades adicionales.
+    await api.agregarProducto(productos[0], 3)
+    await api.agregarProducto(productos[0], 3)
     let pedido = await api.obtenerPedido()
     assert.equal(pedido.length, 1)
-    assert.equal(pedido[0].cantidad, 5)
+    assert.equal(pedido[0].cantidad, 3, 'guardar 3 dos veces conserva 3, sin sumar a 6')
     assert.equal(pedido[0].pedidoId, registro.id)
-    await assert.rejects(api.agregarProducto(productos[0], 99))
+    await Promise.all([api.agregarProducto(productos[0], 4), api.agregarProducto(productos[0], 2)])
+    assert.equal((await api.obtenerPedido())[0].cantidad, 2)
+    await api.agregarProducto(productos[0], 99)
+    assert.equal((await api.obtenerPedido())[0].cantidad, 99)
+    for (const cantidad of [0, 1.5, 100, NaN]) await assert.rejects(api.agregarProducto(productos[0], cantidad))
     await assert.rejects(api.actualizarCantidad(productos[0].id, 0))
-    assert.equal((await api.obtenerPedido())[0].cantidad, 5)
+    assert.equal((await api.obtenerPedido())[0].cantidad, 99)
+
+    const guardadoEnCurso = api.actualizarCantidad(productos[0].id, 6)
+    const alVolverAlMenu = await api.obtenerPedido()
+    await guardadoEnCurso
+    assert.equal(alVolverAlMenu[0].cantidad, 6, 'una lectura espera el guardado iniciado antes de navegar')
 
     await api.actualizarCantidad(productos[0].id, 7)
     assert.equal((await api.obtenerPedido())[0].cantidad, 7)
