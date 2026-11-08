@@ -1,5 +1,5 @@
 import { normalizarProducto } from '@/utils/pedido'
-const API_URL = 'http://localhost:3000/productos'
+const API_URL = new URL('productos', import.meta.env.VITE_BASE_URL).href
 
 const obtenerProductos = async () => {
   let respuesta

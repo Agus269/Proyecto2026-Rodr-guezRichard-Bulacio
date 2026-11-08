@@ -56,34 +56,3 @@ export const validarMesa = (mesa) => {
 export const validarPago = (pago) => {
   return ['efectivo', 'transferencia', 'tarjeta'].includes(pago) ? '' : 'Seleccioná un método de pago.'
 }
-
-/** Conserva el contrato de Menú: id, nombre, precio y cantidad en la clave pedido. */
-export const leerPedido = (storage) => {
-  try {
-    const almacenamiento = storage ?? localStorage
-    const guardados = JSON.parse(almacenamiento.getItem('pedido')) || []
-    if (!Array.isArray(guardados)) return []
-    const pedido = []
-    guardados.forEach((item) => {
-      if (!item || !Number.isInteger(item.id) || item.id < 1 ||
-        typeof item.nombre !== 'string' || !item.nombre.trim() ||
-        typeof item.precio !== 'number' || !Number.isFinite(item.precio) || item.precio < 0 ||
-        !cantidadValida(item.cantidad) || pedido.some((existente) => existente.id === item.id)) return
-      pedido.push({id:item.id,nombre:item.nombre,precio:item.precio,cantidad:item.cantidad})
-    })
-    return pedido
-  } catch {
-    return []
-  }
-}
-
-/** Informa el resultado para no anunciar una confirmación que no se pudo guardar. */
-export const guardarPedido = (pedido, storage) => {
-  try {
-    const almacenamiento = storage ?? localStorage
-    almacenamiento.setItem('pedido', JSON.stringify(pedido))
-    return true
-  } catch {
-    return false
-  }
-}

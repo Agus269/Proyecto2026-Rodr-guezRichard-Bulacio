@@ -2,7 +2,7 @@
 
 Proyecto realizado para la materia **Taller de Desarrollo Web** de la Universidad Católica de Córdoba.
 
-La segunda entrega migra el proyecto del restaurante a **React**, incorporando enrutamiento, componentes reutilizables, SASS, consumo de una API mock y almacenamiento local.
+La segunda entrega migra el proyecto del restaurante a **React**, incorporando enrutamiento, componentes reutilizables, SASS y persistencia mediante una API mock.
 
 ## Integrantes
 
@@ -18,7 +18,6 @@ La segunda entrega migra el proyecto del restaurante a **React**, incorporando e
 - React Router DOM
 - SASS
 - JSON Server
-- LocalStorage
 - ESLint
 
 ## Requisitos
@@ -35,6 +34,9 @@ Desde la carpeta `segunda-entrega` ejecutar:
 ```bash
 npm install
 ```
+
+Copiar `.env.example` a `.env`. La variable `VITE_BASE_URL=http://localhost:3000/`
+define la URL base de la API. Reiniciar Vite si cambia su valor. El archivo `.env` no se versiona.
 
 ## Ejecución del proyecto
 
@@ -106,12 +108,12 @@ Permite visualizar localmente el build generado.
 
 - Navegación mediante React Router.
 - Layout general con Header, Nav, contenido mediante Outlet y Footer.
-- Catálogo de productos obtenido desde `src/data/db.json`.
+- Catálogo de productos obtenido mediante JSON Server.
 - Consumo de la API mediante `fetch`, `async` y `await`.
 - Uso de `useState` y `useEffect`.
 - Componentes reutilizables como `Button` y `ProductCard`.
 - Selección de productos y cantidades.
-- Persistencia del pedido mediante `localStorage`.
+- Persistencia del pedido mediante el endpoint `/pedido`.
 - Diseño responsive mediante SASS.
 - Validaciones del formulario de pedido.
 - Separación del proyecto en componentes, páginas, estilos y API.
@@ -139,7 +141,7 @@ segunda-entrega/
 
 ## API mock
 
-El catálogo se encuentra almacenado en `src/data/db.json`.
+JSON Server utiliza `src/data/db.json` para almacenar el catálogo y el pedido.
 
 La aplicación consulta los productos mediante:
 
@@ -151,24 +153,18 @@ La comunicación se realiza mediante `fetch` utilizando funciones asincrónicas 
 
 ## Pedido
 
-Los productos seleccionados se almacenan en el navegador utilizando la clave:
+Los productos seleccionados se persisten en JSON Server mediante:
 
 ```text
-pedido
+GET /pedido          # Consultar el pedido
+POST /pedido         # Agregar un producto nuevo
+PATCH /pedido/:id    # Actualizar o acumular cantidades
+DELETE /pedido/:id   # Quitar un producto
 ```
 
-Cada elemento conserva el siguiente formato:
-
-```json
-{
-  "id": 1,
-  "nombre": "Hamburguesa Completa",
-  "precio": 12000,
-  "cantidad": 2
-}
-```
-
-Este almacenamiento permite conservar el pedido al navegar entre las distintas páginas de la aplicación.
+Cada registro conserva `productoId`, nombre, precio y cantidad; JSON Server genera
+su propio `id`. Agregar un producto existente acumula unidades sin duplicarlo.
+Vaciar o confirmar el pedido elimina sus registros mediante DELETE.
 
 ## Integración y validaciones
 
@@ -180,7 +176,7 @@ Los IDs string del mock se normalizan a números al leer la API.
 Se aceptan de 1 a 99 unidades enteras por producto, también al acumular varias
 veces. Los errores se muestran junto al campo y con mensajes accesibles. La
 confirmación es una simulación: no envía pedidos ni cobra; limpia el pedido solo
-si se pudo guardar el cambio en localStorage.
+si se pudo guardar el cambio en la API.
 
 Para reproducir la instalación exacta usar `npm ci`. Desde la raíz del repositorio:
 

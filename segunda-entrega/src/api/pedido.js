@@ -1,6 +1,6 @@
 import { agregarAlPedido, cantidadValida, normalizarProducto } from '../utils/pedido.js'
 
-const API_URL = 'http://localhost:3000/pedido'
+const API_URL = new URL('pedido', import.meta.env.VITE_BASE_URL).href
 
 const solicitar = async (ruta = '', opciones = {}) => {
   let respuesta

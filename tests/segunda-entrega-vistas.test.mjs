@@ -9,7 +9,7 @@ const { MemoryRouter } = require('react-router-dom')
 const { createServer } = await import(pathToFileURL(require.resolve('vite')).href)
 
 test('las páginas de contenido se renderizan con enlaces internos, imagen y tabla accesibles', async () => {
-  const server = await createServer({root:fileURLToPath(new URL('../segunda-entrega',import.meta.url)),server:{middlewareMode:true},appType:'custom'})
+  const server = await createServer({root:fileURLToPath(new URL('../segunda-entrega',import.meta.url)),server:{middlewareMode:true,hmr:false,ws:false},appType:'custom',define:{'import.meta.env.VITE_BASE_URL':JSON.stringify('http://localhost:3000/')}})
   try {
     const api = await server.ssrLoadModule('/src/api/productos.js')
     const fetchAnterior = globalThis.fetch
@@ -45,6 +45,9 @@ test('las páginas de contenido se renderizan con enlaces internos, imagen y tab
     assert.match(pedido, /<label for="metodoPago">/)
     assert.match(pedido, /aria-live="polite"/)
     assert.match(pedido, /\$0,00/)
+    const {default: ProductCard} = await server.ssrLoadModule('/src/components/ProductCard.jsx')
+    const tarjeta = renderToStaticMarkup(h(ProductCard, {producto:{id:1,nombre:'Hamburguesa',precio:12000,imagen:'/imagenes/hamburguesa.webp'}}))
+    assert.match(tarjeta, /<input[^>]*value="1"/)
     const {default: App} = await server.ssrLoadModule('/src/App.jsx')
     for (const [ruta, esperado] of [['/','Buena comida'],['/nosotros','Nuestra historia'],['/ubicacion','Horarios de atención'],['/pedido','Resumen del pedido'],['/no-existe','Página no encontrada']]) {
       const html = renderToStaticMarkup(h(MemoryRouter, {initialEntries:[ruta]}, h(App)))
