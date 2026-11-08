@@ -82,7 +82,7 @@ Inicia el servidor de desarrollo de Vite.
 npm run mock
 ```
 
-Inicia JSON Server utilizando `db.json`.
+Inicia JSON Server utilizando `src/data/db.json`.
 
 ```bash
 npm run build
@@ -106,7 +106,7 @@ Permite visualizar localmente el build generado.
 
 - Navegación mediante React Router.
 - Layout general con Header, Nav, contenido mediante Outlet y Footer.
-- Catálogo de productos obtenido desde `db.json`.
+- Catálogo de productos obtenido desde `src/data/db.json`.
 - Consumo de la API mediante `fetch`, `async` y `await`.
 - Uso de `useState` y `useEffect`.
 - Componentes reutilizables como `Button` y `ProductCard`.
@@ -125,18 +125,21 @@ segunda-entrega/
 │   ├── api/
 │   ├── assets/
 │   ├── components/
+│   ├── data/
+│   │   └── db.json
+│   ├── layout/
+│   │   └── Layout.jsx
 │   ├── pages/
 │   ├── styles/
 │   ├── App.jsx
 │   └── main.jsx
-├── db.json
 ├── package.json
 └── vite.config.js
 ```
 
 ## API mock
 
-El catálogo se encuentra almacenado en `db.json`.
+El catálogo se encuentra almacenado en `src/data/db.json`.
 
 La aplicación consulta los productos mediante:
 
