@@ -158,13 +158,22 @@ Los productos seleccionados se persisten en JSON Server mediante:
 ```text
 GET /pedido          # Consultar el pedido
 POST /pedido         # Agregar un producto nuevo
-PATCH /pedido/:id    # Actualizar o acumular cantidades
+PATCH /pedido/:id    # Reemplazar la cantidad del producto
 DELETE /pedido/:id   # Quitar un producto
 ```
 
 Cada registro conserva `productoId`, nombre, precio y cantidad; JSON Server genera
-su propio `id`. Agregar un producto existente acumula unidades sin duplicarlo.
+su propio `id`. El campo de Menú representa la cantidad total deseada: muestra
+la que ya existe en el pedido y permite reemplazarla con **Guardar cantidad**.
+Por ejemplo, guardar 3 dos veces mantiene 3 unidades, no 6. Los productos nuevos
+usan POST y los existentes PATCH, sin duplicar registros.
 Vaciar o confirmar el pedido elimina sus registros mediante DELETE.
+
+La mesa y el método de pago se conservan en `localStorage`, con la clave
+`datosPedido`, al salir de la página o recargar. No se guarda el apellido.
+Al confirmar se limpian estos campos. El formulario sigue funcionando si el
+navegador bloquea el almacenamiento o contiene datos dañados. Los productos
+se consultan siempre en la API; no se mantiene otro carrito en localStorage.
 
 ## Integración y validaciones
 
@@ -173,8 +182,8 @@ Toda la aplicación importa `@/styles/estilos.scss`; los CSS de plantilla y la
 vista aislada de pruebas se retiraron. Button se reutiliza en Menú y Pedido.
 Los IDs string del mock se normalizan a números al leer la API.
 
-Se aceptan de 1 a 99 unidades enteras por producto, también al acumular varias
-veces. Los errores se muestran junto al campo y con mensajes accesibles. La
+Se aceptan de 1 a 99 unidades enteras por producto. Los errores se muestran
+junto al campo y con mensajes accesibles. La
 confirmación es una simulación: no envía pedidos ni cobra; limpia el pedido solo
 si se pudo guardar el cambio en la API.
 

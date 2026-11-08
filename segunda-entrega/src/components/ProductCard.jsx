@@ -4,11 +4,12 @@ import Button from '@/components/Button'
 import { cantidadValida, mostrarPrecio } from '@/utils/pedido'
 import { agregarProducto } from '@/api/pedido'
 
-const ProductCard = ({ producto, cantidadInicial = 1 }) => {
-  const [cantidad, setCantidad] = useState(String(cantidadInicial))
+const ProductCard = ({ producto, cantidadInicial = 0 }) => {
+  const [cantidad, setCantidad] = useState(String(cantidadInicial || 1))
   const [mensaje, setMensaje] = useState('')
   const [error, setError] = useState('')
   const [guardando, setGuardando] = useState(false)
+  const [cantidadGuardada, setCantidadGuardada] = useState(cantidadInicial)
 
   const agregarAlPedido = async () => {
     if (guardando) return
@@ -16,8 +17,10 @@ const ProductCard = ({ producto, cantidadInicial = 1 }) => {
     setMensaje('')
     try {
       const item = await agregarProducto(producto, Number(cantidad))
+      setCantidad(String(item.cantidad))
+      setCantidadGuardada(item.cantidad)
       setError('')
-      setMensaje(`${producto.nombre} agregado al pedido. Unidades: ${item.cantidad}.`)
+      setMensaje(`${producto.nombre}: cantidad guardada en el pedido: ${item.cantidad}.`)
     } catch (error) {
       setError(error.message)
     } finally {
@@ -50,7 +53,7 @@ const ProductCard = ({ producto, cantidadInicial = 1 }) => {
       </p>
 
       <label htmlFor={`cantidad-${producto.id}`}>
-        Cantidad de {producto.nombre}:
+        Cantidad total de {producto.nombre} en el pedido:
       </label>
 
       <input
@@ -60,14 +63,16 @@ const ProductCard = ({ producto, cantidadInicial = 1 }) => {
         max="99"
         step="1"
         value={cantidad}
+        disabled={guardando}
         onChange={cambiarCantidad}
         aria-invalid={Boolean(error)}
         aria-describedby={`error-producto-${producto.id}`}
       />
       <p id={`error-producto-${producto.id}`} className="error-campo" aria-live="polite">{error}</p>
+      <p>Actualmente en tu pedido: {cantidadGuardada}.</p>
 
       <Button onClick={agregarAlPedido} disabled={guardando}>
-        Agregar al pedido
+        {cantidadGuardada > 0 ? 'Guardar cantidad' : 'Agregar al pedido'}
       </Button>
 
       {mensaje && (

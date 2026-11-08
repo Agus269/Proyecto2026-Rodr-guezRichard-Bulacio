@@ -8,16 +8,6 @@ export const normalizarProducto = (producto) => {
   return {...producto,id}
 }
 
-export const agregarAlPedido = (pedido, producto, cantidad) => {
-  const existente = pedido.find((item) => item.id === producto.id)
-  const acumulada = cantidad + (existente?.cantidad ?? 0)
-  if (!cantidadValida(cantidad) || !cantidadValida(acumulada)) {
-    throw new Error('Ingresá una cantidad entera entre 1 y 99. Cada producto admite hasta 99 unidades en el pedido.')
-  }
-  if (existente) return pedido.map((item) => item.id === producto.id ? {...item,cantidad:acumulada} : item)
-  return [...pedido,{id:producto.id,nombre:producto.nombre,precio:producto.precio,cantidad}]
-}
-
 export const cantidadValida = (cantidad) => {
   return typeof cantidad === 'number' && Number.isInteger(cantidad) && cantidad >= 1 && cantidad <= 99
 }
@@ -55,4 +45,25 @@ export const validarMesa = (mesa) => {
 
 export const validarPago = (pago) => {
   return ['efectivo', 'transferencia', 'tarjeta'].includes(pago) ? '' : 'Seleccioná un método de pago.'
+}
+
+export const leerDatosPedido = () => {
+  try {
+    const datos = JSON.parse(localStorage.getItem('datosPedido'))
+    return {
+      apellido: '',
+      mesa: typeof datos?.mesa === 'string' && !validarMesa(datos.mesa) && String(Number(datos.mesa)) === datos.mesa ? datos.mesa : '',
+      metodoPago: validarPago(datos?.metodoPago) ? '' : datos.metodoPago,
+    }
+  } catch {
+    return {apellido:'',mesa:'',metodoPago:''}
+  }
+}
+
+export const guardarDatosPedido = ({mesa, metodoPago}) => {
+  try {
+    localStorage.setItem('datosPedido', JSON.stringify({mesa, metodoPago}))
+  } catch {
+    // El formulario sigue disponible si el navegador bloquea el almacenamiento.
+  }
 }

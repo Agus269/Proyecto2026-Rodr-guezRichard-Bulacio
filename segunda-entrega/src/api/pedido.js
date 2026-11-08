@@ -1,4 +1,4 @@
-import { agregarAlPedido, cantidadValida, normalizarProducto } from '../utils/pedido.js'
+import { cantidadValida, normalizarProducto } from '@/utils/pedido'
 
 const API_URL = new URL('pedido', import.meta.env.VITE_BASE_URL).href
 
@@ -14,7 +14,7 @@ const solicitar = async (ruta = '', opciones = {}) => {
   return respuesta.json()
 }
 
-export const obtenerPedido = async () => {
+const consultarPedido = async () => {
   const pedido = await solicitar()
   if (!Array.isArray(pedido)) throw new Error('El pedido recibido no es válido.')
   return pedido.map((item) => {
@@ -26,10 +26,22 @@ export const obtenerPedido = async () => {
 
 // Evita que dos altas simultáneas de esta aplicación creen el mismo producto.
 let pendiente = Promise.resolve()
-const modificarPedido = (operacion) => {
-  const resultado = pendiente.then(operacion)
-  pendiente = resultado.catch(() => {})
-  return resultado
+export const obtenerPedido = async () => {
+  // Al cambiar de página, espera las escrituras iniciadas en esta aplicación.
+  await pendiente
+  return consultarPedido()
+}
+
+const modificarPedido = async (operacion) => {
+  const anterior = pendiente
+  let liberar
+  pendiente = new Promise((resolve) => { liberar = resolve })
+  await anterior
+  try {
+    return await operacion()
+  } finally {
+    liberar()
+  }
 }
 
 const enviar = (ruta, method, datos) => solicitar(ruta, {
@@ -39,10 +51,10 @@ const enviar = (ruta, method, datos) => solicitar(ruta, {
 })
 
 export const agregarProducto = (producto, cantidad) => modificarPedido(async () => {
-  const pedido = await obtenerPedido()
-  const nuevoPedido = agregarAlPedido(pedido, producto, cantidad)
-  const item = nuevoPedido.find((item) => item.id === producto.id)
-  const existente = pedido.find((item) => item.id === producto.id)
+  if (!cantidadValida(cantidad)) throw new Error('Ingresá una cantidad entera entre 1 y 99.')
+  const item = normalizarProducto({ ...producto, cantidad })
+  const pedido = await consultarPedido()
+  const existente = pedido.find((registro) => registro.id === item.id)
   if (existente) {
     await enviar(`/${encodeURIComponent(existente.pedidoId)}`, 'PATCH', { cantidad: item.cantidad })
   } else {
@@ -58,7 +70,7 @@ export const actualizarCantidad = (id, cantidad) => modificarPedido(async () => 
 })
 
 const buscarProducto = async (id) => {
-  const item = (await obtenerPedido()).find((item) => item.id === id)
+  const item = (await consultarPedido()).find((item) => item.id === id)
   if (!item) throw new Error('El producto ya no está en el pedido. Recargá la página.')
   return item
 }
@@ -69,6 +81,6 @@ export const quitarProducto = (id) => modificarPedido(async () => {
 })
 
 export const vaciarPedido = () => modificarPedido(async () => {
-  const pedido = await obtenerPedido()
+  const pedido = await consultarPedido()
   for (const item of pedido) await solicitar(`/${encodeURIComponent(item.pedidoId)}`, { method: 'DELETE' })
 })
