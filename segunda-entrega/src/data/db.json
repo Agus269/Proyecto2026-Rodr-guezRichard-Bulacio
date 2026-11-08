@@ -48,5 +48,6 @@
       "precio": 3500,
       "imagen": "/imagenes/limonada.svg"
     }
-  ]
+  ],
+  "pedido": []
 }

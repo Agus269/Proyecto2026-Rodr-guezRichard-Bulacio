@@ -1,22 +1,27 @@
 import { useState } from 'react'
 
 import Button from '@/components/Button'
-import { leerPedido, guardarPedido, cantidadValida, agregarAlPedido as crearPedidoConProducto, mostrarPrecio } from '@/utils/pedido'
+import { cantidadValida, mostrarPrecio } from '@/utils/pedido'
+import { agregarProducto } from '@/api/pedido'
 
 const ProductCard = ({ producto }) => {
   const [cantidad, setCantidad] = useState('1')
   const [mensaje, setMensaje] = useState('')
   const [error, setError] = useState('')
+  const [guardando, setGuardando] = useState(false)
 
-  const agregarAlPedido = () => {
+  const agregarAlPedido = async () => {
+    if (guardando) return
+    setGuardando(true)
     setMensaje('')
     try {
-      const pedido = crearPedidoConProducto(leerPedido(), producto, Number(cantidad))
-      if (!guardarPedido(pedido)) throw new Error('El navegador no permite guardar el pedido. Habilitá el almacenamiento del sitio y volvé a intentar.')
+      const item = await agregarProducto(producto, Number(cantidad))
       setError('')
-      setMensaje(`${producto.nombre} agregado al pedido. Unidades: ${pedido.find((item) => item.id === producto.id).cantidad}.`)
+      setMensaje(`${producto.nombre} agregado al pedido. Unidades: ${item.cantidad}.`)
     } catch (error) {
       setError(error.message)
+    } finally {
+      setGuardando(false)
     }
   }
 
@@ -61,7 +66,7 @@ const ProductCard = ({ producto }) => {
       />
       <p id={`error-producto-${producto.id}`} className="error-campo" aria-live="polite">{error}</p>
 
-      <Button onClick={agregarAlPedido}>
+      <Button onClick={agregarAlPedido} disabled={guardando}>
         Agregar al pedido
       </Button>
 

@@ -1,13 +1,17 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '@/components/Button'
+import { obtenerPedido, actualizarCantidad, quitarProducto as eliminarProducto, vaciarPedido } from '@/api/pedido'
 import {
-  leerPedido, guardarPedido, calcularTotal, mostrarPrecio, cantidadValida,
+  calcularTotal, mostrarPrecio, cantidadValida,
   validarApellido, validarMesa, validarPago,
 } from '@/utils/pedido'
 
 const Pedido = () => {
-  const [pedido, setPedido] = useState(() => leerPedido())
+  const [pedido, setPedido] = useState([])
+  const [cargando, setCargando] = useState(true)
+  const [guardando, setGuardando] = useState(false)
+  const operacionRef = useRef(false)
   const [cantidades, setCantidades] = useState({})
   const [datos, setDatos] = useState({apellido:'',mesa:'',metodoPago:''})
   const [errores, setErrores] = useState({})
@@ -16,36 +20,60 @@ const Pedido = () => {
   const navigate = useNavigate()
   const validadores = {apellido:validarApellido,mesa:validarMesa,metodoPago:validarPago}
 
-  const guardarCambios = (nuevoPedido) => {
-    if (!guardarPedido(nuevoPedido)) {
-      setMensaje('El navegador no permite guardar el pedido. Habilitá el almacenamiento del sitio y volvé a intentar.')
+  useEffect(() => {
+    let activo = true
+    obtenerPedido()
+      .then((pedido) => { if (activo) setPedido(pedido) })
+      .catch((error) => { if (activo) setMensaje(error.message) })
+      .finally(() => { if (activo) setCargando(false) })
+    return () => { activo = false }
+  }, [])
+
+  const guardarCambios = async (operacion) => {
+    if (operacionRef.current) return false
+    operacionRef.current = true
+    setGuardando(true)
+    try {
+      await operacion()
+      setPedido(await obtenerPedido())
+      setMensaje('')
+      return true
+    } catch (error) {
+      // Si se vació sólo una parte, vuelve a mostrar lo que quedó en la API.
+      try { setPedido(await obtenerPedido()) } catch { /* Conserva el último resumen disponible. */ }
+      setMensaje(error.message)
       return false
+    } finally {
+      operacionRef.current = false
+      setGuardando(false)
     }
-    setPedido(nuevoPedido)
-    setMensaje('')
-    return true
   }
 
-  const cambiarCantidad = (item, valor) => {
+  const cambiarCantidad = async (item, valor) => {
+    if (operacionRef.current) return
     setCantidades({...cantidades,[item.id]:valor})
     setMensaje('')
     const cantidad = Number(valor)
     if (!cantidadValida(cantidad)) return
-    const nuevoPedido = pedido.map((producto) => producto.id === item.id ? {...producto,cantidad} : producto)
-    if (!guardarCambios(nuevoPedido)) {
+    if (!await guardarCambios(() => actualizarCantidad(item.id, cantidad))) {
       setCantidades({...cantidades,[item.id]:String(item.cantidad)})
     }
   }
 
-  const quitarProducto = (id) => {
-    if (guardarCambios(pedido.filter((item) => item.id !== id))) {
+  const quitarProducto = async (id) => {
+    if (await guardarCambios(() => eliminarProducto(id))) {
+      setCantidades((actuales) => {
+        const restantes = {...actuales}
+        delete restantes[id]
+        return restantes
+      })
       setMensaje('Producto eliminado del pedido.')
       mensajeRef.current?.focus()
     }
   }
 
-  const vaciar = () => {
-    if (guardarCambios([])) {
+  const vaciar = async () => {
+    if (await guardarCambios(vaciarPedido)) {
       setCantidades({})
       setMensaje('Pedido vacío. Podés elegir nuevamente desde Menú.')
       mensajeRef.current?.focus()
@@ -59,9 +87,9 @@ const Pedido = () => {
     setMensaje('')
   }
 
-  const confirmar = (event) => {
+  const confirmar = async (event) => {
     event.preventDefault()
-    if (pedido.length === 0) return
+    if (pedido.length === 0 || operacionRef.current) return
     const nuevosErrores = {
       apellido:validarApellido(datos.apellido),
       mesa:validarMesa(datos.mesa),
@@ -75,7 +103,7 @@ const Pedido = () => {
       return
     }
     const confirmacion = `Pedido de demostración confirmado para ${datos.apellido.trim()}, mesa ${datos.mesa}. Total: ${mostrarPrecio(calcularTotal(pedido))}. Método de pago: ${datos.metodoPago}. No se realizó ningún cobro.`
-    if (guardarCambios([])) {
+    if (await guardarCambios(vaciarPedido)) {
       setCantidades({})
       setDatos({apellido:'',mesa:'',metodoPago:''})
       setErrores({})
@@ -88,6 +116,7 @@ const Pedido = () => {
     <>
       <h2>Pedido</h2>
       <p>Demostración académica: no se envían pedidos ni se realizan cobros.</p>
+      {cargando && <p role="status">Cargando pedido...</p>}
       <section aria-labelledby="tituloResumen">
         <h3 id="tituloResumen">Resumen del pedido</h3>
         <p>En pantallas pequeñas, deslizá la tabla hacia los costados para ver todas las columnas.</p>
@@ -105,23 +134,23 @@ const Pedido = () => {
                     <td>
                       <label htmlFor={`unidades-${item.id}`}>Unidades de {item.nombre}</label>
                       <input id={`unidades-${item.id}`} type="number" min="1" max="99" step="1"
-                        value={valor} onChange={(event) => cambiarCantidad(item,event.target.value)}
+                        value={valor} disabled={cargando || guardando} onChange={(event) => cambiarCantidad(item,event.target.value)}
                         aria-invalid={cantidadIncorrecta} aria-describedby={cantidadIncorrecta ? `error-unidades-${item.id}` : undefined} />
                       {cantidadIncorrecta && <p id={`error-unidades-${item.id}`} className="error-campo" role="alert">Ingresá una cantidad entera entre 1 y 99. El total conserva la última cantidad válida.</p>}
                     </td>
                     <td>{mostrarPrecio(item.precio)}</td>
                     <td>{mostrarPrecio(item.precio * item.cantidad)}</td>
-                    <td><Button onClick={() => quitarProducto(item.id)}>Quitar {item.nombre}</Button></td>
+                    <td><Button onClick={() => quitarProducto(item.id)} disabled={cargando || guardando}>Quitar {item.nombre}</Button></td>
                   </tr>
                 )
               })}
-              {pedido.length === 0 && <tr><td colSpan="5">No hay productos seleccionados. Elegí un plato en Menú.</td></tr>}
+              {!cargando && pedido.length === 0 && <tr><td colSpan="5">No hay productos seleccionados. Elegí un plato en Menú.</td></tr>}
             </tbody>
           </table>
         </div>
         <p><strong>Total: </strong><span id="totalPedido">{mostrarPrecio(calcularTotal(pedido))}</span></p>
         <Button onClick={() => navigate('/menu')}>Seguir eligiendo productos</Button>
-        <Button onClick={vaciar} disabled={pedido.length === 0}>Vaciar pedido</Button>
+        <Button onClick={vaciar} disabled={cargando || guardando || pedido.length === 0}>Vaciar pedido</Button>
       </section>
       <section aria-labelledby="tituloDatos">
         <h3 id="tituloDatos">Datos del pedido</h3>
@@ -154,7 +183,7 @@ const Pedido = () => {
             </select>
           </p>
           <p id="error-metodoPago" className="error-campo" aria-live="polite">{errores.metodoPago}</p>
-          <Button type="submit" disabled={pedido.length === 0}>Confirmar Pedido</Button>
+          <Button type="submit" disabled={cargando || guardando || pedido.length === 0}>Confirmar Pedido</Button>
         </form>
         <p id="mensajePedido" ref={mensajeRef} role="status" aria-live="polite" tabIndex="-1">{mensaje}</p>
       </section>
