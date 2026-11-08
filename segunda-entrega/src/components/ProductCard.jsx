@@ -4,8 +4,8 @@ import Button from '@/components/Button'
 import { cantidadValida, mostrarPrecio } from '@/utils/pedido'
 import { agregarProducto } from '@/api/pedido'
 
-const ProductCard = ({ producto }) => {
-  const [cantidad, setCantidad] = useState('1')
+const ProductCard = ({ producto, cantidadInicial = 1 }) => {
+  const [cantidad, setCantidad] = useState(String(cantidadInicial))
   const [mensaje, setMensaje] = useState('')
   const [error, setError] = useState('')
   const [guardando, setGuardando] = useState(false)

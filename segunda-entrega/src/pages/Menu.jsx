@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 
 import { obtenerProductos } from '@/api/productos'
+import { obtenerPedido } from '@/api/pedido'
 import ProductCard from '@/components/ProductCard'
 import { Link } from 'react-router-dom'
 
 const Menu = () => {
   const [productos, setProductos] = useState([])
+  const [pedido, setPedido] = useState([])
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState('')
 
@@ -13,7 +15,9 @@ const Menu = () => {
     const cargarProductos = async () => {
       try {
         const datos = await obtenerProductos()
+        const pedidoActual = await obtenerPedido()
         setProductos(datos)
+        setPedido(pedidoActual)
       } catch (error) {
         setError(error.message)
       } finally {
@@ -45,6 +49,7 @@ const Menu = () => {
           <ProductCard
             key={producto.id}
             producto={producto}
+            cantidadInicial={pedido.find((item) => item.id === producto.id)?.cantidad ?? 1}
           />
         ))}
       </div>
