@@ -38,7 +38,7 @@ main .inicio {
   img { aspect-ratio: 3 / 2; object-fit: cover; }
   figcaption { margin-top: .5rem; color: v.$texto-suave; font-size: .8rem; }
 }
-.destacados, #listaProductos, .lista-productos {
+.destacados, .lista-productos {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
@@ -73,4 +73,4 @@ tbody tr:nth-child(even) { background: #fbf7f2; }
 }
 .tabla-horarios { overflow-x: auto; }
 #totalPedido { color: v.$principal-oscuro; font-size: 1.2rem; }
-#mensajePedido, #mensajeMenu { min-height: 1.5rem; margin-top: 1rem; font-weight: 700; }
+#mensajePedido { min-height: 1.5rem; margin-top: 1rem; font-weight: 700; }

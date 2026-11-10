@@ -112,3 +112,23 @@ mientras termina un PATCH. La prueba reprodujo el fallo antes de corregirlo.
 Se realizó además una revisión independiente del diff. No quedan fallos conocidos
 en el alcance revisado; esta evidencia corresponde a una demostración académica
 con API mock, no a un sistema de pedidos multiusuario o de pagos reales.
+
+## Limpieza de estilos — 10 de noviembre de 2026
+
+El issue #35 señalaba `.ayuda-campo`, sin referencias en React. Se eliminó esa
+regla y se revisaron los demás SCSS: también se retiraron los selectores antiguos
+`#listaProductos` y `#mensajeMenu`. Se conservan `.lista-productos`, `.destacados`
+y `#mensajePedido`, que sí se usan, junto con sus reglas responsive.
+
+La comparación en navegador de las cinco páginas a 390 y 1280 píxeles conservó
+distribución y tipografía, sin desbordamientos, imágenes rotas ni controles sin
+label. Se probó agregar dos hamburguesas, rechazar un formulario incompleto sin
+perder productos, cambiar a tres, volver al Menú y guardar sin duplicar, y
+confirmar mesa 3 por $36.000,00. Ambos botones quedaron deshabilitados al vaciarse
+el pedido y el recorrido no produjo errores de consola.
+
+Volvieron a pasar las 25 pruebas, la compilación con SASS y ESLint. La auditoría
+completa devolvió cero vulnerabilidades. Una revisión independiente confirmó
+que no se retiraron selectores utilizados. Se mantienen los requisitos de
+React, alias, hooks, Router/Outlet, componentes reutilizados, API y localStorage;
+no se cambiaron JavaScript, dependencias, imágenes ni la primera entrega.
